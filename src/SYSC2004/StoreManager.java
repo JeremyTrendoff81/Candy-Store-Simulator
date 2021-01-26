@@ -29,7 +29,11 @@ public class StoreManager {
         return inventory.getStock(product.getId());
     }
 
-    /*  */
+    /*
+    Use an ArrayList of purchases to find the total price for all the purchases and remove products purchased from
+    the inventory. Returns a negative double and doesn't remove any of the purchases from inventory if one of the
+    products is not available in the inventory.
+     */
     public double processTransaction(ArrayList <int[]> purchases) {
         double totalPrice = 0.0;
         double tempPrice;
@@ -39,8 +43,10 @@ public class StoreManager {
                 return tempPrice;
             } else {
                 totalPrice += tempPrice * item[1];
-                inventory.removeStock(item[0], item[1]);
             }
+        }
+        for (int[] item : purchases) {
+            inventory.removeStock(item[0], item[1]);
         }
         return totalPrice;
     }
