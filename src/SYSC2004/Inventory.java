@@ -65,8 +65,8 @@ public class Inventory {
 
         for (Product p : stockList) {
             if (id.equals(p.getId())) {           // equals() method recommended by intellij for string comparisons.
-                stockList.remove(p);
                 if (count < quantity) {
+                    stockList.remove(p);
                     count++;
                 } else {
                     return true;
