@@ -28,7 +28,7 @@ public class Inventory {
         int stock = 0; // The amount of stock
 
         for (Product p : stockList) {
-            if (id == p.getId()) {           // equals() method recommended by intellij for string comparisons.
+            if (id == p.getId()) {
                 stock++;
             }
         }
@@ -51,7 +51,7 @@ public class Inventory {
     /* Remove a given product from the inventory  */
     public boolean removeStock(int id) {
         for (Product p : stockList) {
-            if (id == p.getId()) {        // equals() method recommended by intellij for string comparisons.
+            if (id == p.getId()) {
                 stockList.remove(p);
                 return true;
             }
@@ -64,7 +64,7 @@ public class Inventory {
         int count = 0; // The amount of products removed
 
         for (Product p : stockList) {
-            if (id == p.getId()) {           // equals() method recommended by intellij for string comparisons.
+            if (id == p.getId()) {
                 if (count < quantity) {
                     stockList.remove(p);
                     count++;
@@ -81,7 +81,7 @@ public class Inventory {
     public String getProductName(int id) {
         try {
             for (Product p : stockList) {
-                if (id == p.getId()) {           // equals() method recommended by intellij for string comparisons.
+                if (id == p.getId()) {
                     return p.getName();
                 }
             }
@@ -96,7 +96,7 @@ public class Inventory {
     public double getProductPrice(int id) {
         try {
             for (Product p : stockList) {
-                if (id == p.getId()) {          // equals() method recommended by intellij for string comparisons.
+                if (id == p.getId()) {
                     return p.getPrice();
                 }
             }
