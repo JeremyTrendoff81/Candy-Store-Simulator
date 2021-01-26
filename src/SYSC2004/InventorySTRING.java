@@ -2,24 +2,17 @@ package SYSC2004;
 
 import java.util.ArrayList;
 
-/**
- * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
- *
- * Date of Completion: Jan 25, 2021
- *
- * Class Description: The inventory class will keep track of all the products in the store.
- */
 
-public class Inventory {
+public class InventorySTRING {
     private ArrayList<Product> stockList; // The list of all products in the store
 
     /* Default Constructor. Initializes stockList to be empty. */
-    public Inventory() {
+    public InventorySTRING() {
         stockList = new ArrayList<>(); // new empty ArrayList
     }
 
     /* Constructor to initialize an inventory based on another ArrayList */
-    public Inventory(ArrayList<Product> stockList) {
+    public InventorySTRING(ArrayList<Product> stockList) {
         this.stockList = stockList;
     }
 
@@ -108,3 +101,4 @@ public class Inventory {
     }
 
 }
+
