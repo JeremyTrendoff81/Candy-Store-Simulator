@@ -10,11 +10,11 @@ package SYSC2004;
 
 public class Product {
     private final String name;  // The name of the product
-    private final String id;    // The id of the product
+    private final int id;    // The id of the product
     private final double price; // The price of the product
 
     /* Constructor to initialize a product. */
-    public Product(String name, String id, double price) {
+    public Product(String name, int id, double price) {
         this.name = name;
         this.id = id;
         this.price = price;
@@ -26,7 +26,7 @@ public class Product {
     }
 
     /* Get the id of the product */
-    public String getId() {
+    public int getId() {
         return id;
     }
 

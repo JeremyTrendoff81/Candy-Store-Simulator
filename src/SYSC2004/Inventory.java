@@ -24,11 +24,11 @@ public class Inventory {
     }
 
     /* Get the amount of stock in the inventory for a given product ID */
-    public int getStock(String id) {
+    public int getStock(int id) {
         int stock = 0; // The amount of stock
 
         for (Product p : stockList) {
-            if (id.equals(p.getId())) {           // equals() method recommended by intellij for string comparisons.
+            if (id == p.getId()) {           // equals() method recommended by intellij for string comparisons.
                 stock++;
             }
         }
@@ -49,9 +49,9 @@ public class Inventory {
     }
 
     /* Remove a given product from the inventory  */
-    public boolean removeStock(String id) {
+    public boolean removeStock(int id) {
         for (Product p : stockList) {
-            if (id.equals(p.getId())) {        // equals() method recommended by intellij for string comparisons.
+            if (id == p.getId()) {        // equals() method recommended by intellij for string comparisons.
                 stockList.remove(p);
                 return true;
             }
@@ -60,11 +60,11 @@ public class Inventory {
     }
 
     /* Remove a specified amount of stock of a given product from the inventory */
-    public boolean removeStock(String id, int quantity) {
+    public boolean removeStock(int id, int quantity) {
         int count = 0; // The amount of products removed
 
         for (Product p : stockList) {
-            if (id.equals(p.getId())) {           // equals() method recommended by intellij for string comparisons.
+            if (id == p.getId()) {           // equals() method recommended by intellij for string comparisons.
                 if (count < quantity) {
                     stockList.remove(p);
                     count++;
@@ -78,10 +78,10 @@ public class Inventory {
     }
 
     /* Get the name of a product of the given product ID */
-    public String getProductName(String id) {
+    public String getProductName(int id) {
         try {
             for (Product p : stockList) {
-                if (id.equals(p.getId())) {           // equals() method recommended by intellij for string comparisons.
+                if (id == p.getId()) {           // equals() method recommended by intellij for string comparisons.
                     return p.getName();
                 }
             }
@@ -93,10 +93,10 @@ public class Inventory {
     }
 
     /* Get the price of a product from the given product ID */
-    public double getProductPrice(String id) {
+    public double getProductPrice(int id) {
         try {
             for (Product p : stockList) {
-                if (id.equals(p.getId())) {          // equals() method recommended by intellij for string comparisons.
+                if (id == p.getId()) {          // equals() method recommended by intellij for string comparisons.
                     return p.getPrice();
                 }
             }
