@@ -37,16 +37,16 @@ public class StoreManager {
     public double processTransaction(ArrayList <int[]> purchases) {
         double totalPrice = 0.0;
         double tempPrice;
-        for (int[] item : purchases) {
+        for (int[] item : purchases) {      // For loop iterates through purchases and calculates the total price
             tempPrice = inventory.getProductPrice(item[0]);
             if (tempPrice < 0) {
-                return tempPrice;
+                return tempPrice;     // Returns a negative number if a Product doesn't exist in inventory
             } else {
                 totalPrice += tempPrice * item[1];
             }
         }
-        for (int[] item : purchases) {
-            inventory.removeStock(item[0], item[1]);
+        for (int[] item : purchases) {      // This second for loop is so that items are only removed from inventory
+            inventory.removeStock(item[0], item[1]);     // when we know that all products exist in inventory.
         }
         return totalPrice;
     }
