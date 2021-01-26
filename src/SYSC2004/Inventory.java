@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
  *
- * Date of Completion:
+ * Date of Completion: Jan 25, 2021
  *
  * Class Description: The inventory class will keep track of all the products in the store.
  */
