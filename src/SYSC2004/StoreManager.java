@@ -33,12 +33,12 @@ public class StoreManager {
     public double processTransaction(ArrayList <int[]> purchases) {
         double totalPrice = 0.0;
         double tempPrice;
-        for (int[] item : ArrayList) {
+        for (int[] item : purchases) {
             tempPrice = inventory.getProductPrice(item[0]);
             if (tempPrice < 0) {
                 return tempPrice;
             } else {
-                totalPrice += tempPrice;
+                totalPrice += tempPrice * item[1];
                 inventory.removeStock(item[0], item[1]);
             }
         }
