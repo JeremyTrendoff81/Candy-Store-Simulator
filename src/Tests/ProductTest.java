@@ -5,6 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
+ *
+ * Date of Completion: Jan 27, 2021
+ *
+ * Class Description: A Junit 5 test class to test the Product class.
+ */
+
 public class ProductTest {
     Product p1 = new Product("1", 1, 1.00);
     Product p2 = new Product("2", 2, 2.00);
