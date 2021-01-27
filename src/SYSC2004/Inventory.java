@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 
 public class Inventory {
-    private ArrayList<Product> stockList; // The list of all products in the store
+    private final ArrayList<Product> stockList; // The list of all products in the store
 
     /* Default Constructor. Initializes stockList to be empty. */
     public Inventory() {
@@ -48,7 +48,7 @@ public class Inventory {
         }
     }
 
-    /* Remove a given product from the inventory  */
+    /* Remove a given product from the inventory. Return if the product was removed. */
     public boolean removeStock(int id) {
         for (Product p : stockList) {
             if (id == p.getId()) {
@@ -59,22 +59,25 @@ public class Inventory {
         return false;
     }
 
-    /* Remove a specified amount of stock of a given product from the inventory */
+    /* Remove a specified amount of stock of a given product from the inventory. Return if the products were removed properly. */
     public boolean removeStock(int id, int quantity) {
-        int count = 0; // The amount of products removed
+        ArrayList<Integer> indexies = new ArrayList<>();    // An ArrayList to hold the index's of the products to be removed.
+        int count = 0;                                      // The amount of products removed
 
         for (Product p : stockList) {
             if (id == p.getId()) {
                 if (count < quantity) {
-                    stockList.remove(p);
+                    indexies.add(stockList.indexOf(p));
                     count++;
-                } else {
-                    return true;
                 }
             }
         }
 
-        return false;
+        for (int i : indexies) {
+            stockList.remove(i);
+        }
+
+        return count == quantity;
     }
 
     /* Get the name of a product of the given product ID */
@@ -105,6 +108,20 @@ public class Inventory {
         }
 
         return -2.0;
+    }
+
+    /* Prints out the current inventory */
+    public void printInventory() {
+        for (Product p : stockList) {
+            System.out.println("Name: " + p.getName());
+            System.out.println("Id: " + p.getId());
+            System.out.println("Price: " + p.getPrice() + "\n");
+        }
+    }
+
+    /* Get the current inventory */
+    public ArrayList<Product> getStockList() {
+        return stockList;
     }
 
 }
