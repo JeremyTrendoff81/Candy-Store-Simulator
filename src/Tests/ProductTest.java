@@ -1,0 +1,33 @@
+package Tests;
+
+import SYSC2004.Product;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class ProductTest {
+    Product p1 = new Product("1", 1, 1.00);
+    Product p2 = new Product("2", 2, 2.00);
+    Product p3 = new Product("3", 3, 3.00);
+
+    @Test
+    void getName() {
+        assertEquals("1", p1.getName());
+        assertEquals("2", p2.getName());
+        assertEquals("3", p3.getName());
+    }
+
+    @Test
+    void getId() {
+        assertEquals(1, p1.getId());
+        assertEquals(2, p2.getId());
+        assertEquals(3, p3.getId());
+    }
+
+    @Test
+    void getPrice() {
+        assertEquals(1.00, p1.getPrice());
+        assertEquals(2.00, p2.getPrice());
+        assertEquals(3.00, p3.getPrice());
+    }
+}
