@@ -23,39 +23,58 @@ public class Inventory {
         this.stockList = stockList;
     }
 
-    /* Get the amount of stock in the inventory for a given product ID */
+    /* Get the amount of stock in the inventory for a given product ID. Return -1 if method fails. */
     public int getStock(int id) {
         int stock = 0; // The amount of stock
 
-        for (Product p : stockList) {
-            if (id == p.getId()) {
-                stock++;
+        try {
+            for (Product p : stockList) {
+                if (id == p.getId()) {
+                    stock++;
+                }
             }
+
+            return stock;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        return stock;
+        return -1;
     }
 
     /* Add a given product to the inventory */
     public void addStock(Product product) {
-        stockList.add(product);
+        try {
+            stockList.add(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /* Add a specified amount of stock of a given product to the inventory */
     public void addStock(Product product, int quantity) {
-        for (int i = 0; i < quantity; i++) {
-            stockList.add(product);
+        try {
+            for (int i = 0; i < quantity; i++) {
+                stockList.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     /* Remove a given product from the inventory. Return if the product was removed. */
     public boolean removeStock(int id) {
-        for (Product p : stockList) {
-            if (id == p.getId()) {
-                stockList.remove(p);
-                return true;
+        try {
+            for (Product p : stockList) {
+                if (id == p.getId()) {
+                    stockList.remove(p);
+                    return true;
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return false;
     }
 
@@ -64,23 +83,27 @@ public class Inventory {
         ArrayList<Integer> indexies = new ArrayList<>();    // An ArrayList to hold the index's of the products to be removed.
         int count = 0;                                      // The amount of products removed
 
-        for (Product p : stockList) {
-            if (id == p.getId()) {
-                if (count < quantity) {
-                    indexies.add(stockList.indexOf(p));
-                    count++;
+        try {
+            for (Product p : stockList) {
+                if (id == p.getId()) {
+                    if (count < quantity) {
+                        indexies.add(stockList.indexOf(p));
+                        count++;
+                    }
                 }
             }
-        }
 
-        for (int i : indexies) {
-            stockList.remove(i);
+            for (int i : indexies) {
+                stockList.remove(i);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return count == quantity;
     }
 
-    /* Get the name of a product of the given product ID */
+    /* Get the name of a product of the given product ID. Return null if method fails. */
     public String getProductName(int id) {
         try {
             for (Product p : stockList) {
@@ -89,13 +112,13 @@ public class Inventory {
                 }
             }
         } catch (Exception e) {
-            return "ERROR";
+            e.printStackTrace();
         }
 
         return null;
     }
 
-    /* Get the price of a product from the given product ID */
+    /* Get the price of a product from the given product ID. Return -2.0 if method fails. */
     public double getProductPrice(int id) {
         try {
             for (Product p : stockList) {
@@ -104,7 +127,7 @@ public class Inventory {
                 }
             }
         } catch (Exception e) {
-            return -1.0;
+            e.printStackTrace();
         }
 
         return -2.0;

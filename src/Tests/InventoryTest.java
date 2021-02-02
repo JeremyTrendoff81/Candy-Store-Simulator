@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 public class InventoryTest {
-    /* Test Attributes */
     private Product p1 = new Product("Product 1", 1, 1.00);         // Test Product
     private Product p2 = new Product("Product 2", 2, 1.50);         // Test Product
     private Product p3 = new Product("Product 3", 3, 2.00);         // Test Product
