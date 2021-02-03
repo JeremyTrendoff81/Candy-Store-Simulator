@@ -204,4 +204,38 @@ public class InventoryTest {
         System.out.println("Printing Inventory After getProductPrice() Test:");
         i.printInventory();     // Print Result
     }
+
+    @Test
+    void getProductInfo() {
+        Product[] p1 = new Product[10];     // 10 "P1" test products.
+        Product[] p2 = new Product[20];     // 20 "P2" test products.
+
+        /* Initialize "P1" products and add to inventory */
+        for (int i = 0; i < p1.length; i++) {
+            p1[i] = new Product("P1", 1, 1.00);
+            arr.add(p1[i]);
+        }
+
+        /* Initialize "P2" products and add to inventory */
+        for (int i = 0; i < p2.length; i++) {
+            p2[i] = new Product("P2", 2, 2.00);
+            arr.add(p2[i]);
+        }
+
+        i = new Inventory(arr);    // Initialize the inventory.
+
+        /* Test the getProductInfo() method */
+        ArrayList<Object> p1Info = i.getProductInfo(1);
+        ArrayList<Object> p2Info = i.getProductInfo(2);
+
+        assertEquals("P1", p1Info.get(0));
+        assertEquals(1, p1Info.get(1));
+        assertEquals(1.00, p1Info.get(2));
+        assertEquals(p1.length, p1Info.get(3));
+
+        assertEquals("P2", p2Info.get(0));
+        assertEquals(2, p2Info.get(1));
+        assertEquals(2.00, p2Info.get(2));
+        assertEquals(p2.length, p2Info.get(3));
+    }
 }

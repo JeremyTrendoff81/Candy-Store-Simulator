@@ -136,6 +136,28 @@ public class Inventory {
         return -2.0;
     }
 
+    /* Get all information for a given Product ID. Return information using an ArrayList. Return null if there is an error. */
+    public ArrayList<Object> getProductInfo(int id) {
+        ArrayList<Object> info = new ArrayList<>();     // ArrayList to hold all the product information
+
+        try {
+            for (Product p : stockList) {
+                if (id == p.getId()) {
+                    info.add(p.getName());
+                    info.add(p.getId());
+                    info.add(p.getPrice());
+                    info.add(getStock(p.getId()));
+
+                    return info;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     /* Prints out the current inventory */
     public void printInventory() {
         for (Product p : stockList) {
