@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 public class InventorySTRING {
-    private ArrayList<Product> stockList; // The list of all products in the store
+    private final ArrayList<Product> stockList; // The list of all products in the store
 
     /* Default Constructor. Initializes stockList to be empty. */
     public InventorySTRING() {
@@ -100,5 +100,18 @@ public class InventorySTRING {
         return -2.0;
     }
 
+    /* Prints out the current inventory */
+    public void printInventory() {
+        for (Product p : stockList) {
+            System.out.println("Name: " + p.getName());
+            System.out.println("Id: " + p.getId());
+            System.out.println("Price: " + p.getPrice() + "\n");
+        }
+    }
+
+    /* Get the current inventory */
+    public ArrayList<Product> getStockList() {
+        return stockList;
+    }
 }
 
