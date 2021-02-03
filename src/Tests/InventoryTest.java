@@ -11,6 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
  *
+ * Primary Class Developer: Jeremy Trendoff - 101160306
+ * Contributor: Evan Smedley - 101148695
+ *
  * Date of Completion: Jan 27, 2021
  *
  * Class Description: A JUnit 5 test class to test the methods of the Inventory class.

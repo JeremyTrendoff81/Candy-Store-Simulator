@@ -8,6 +8,17 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
+ *
+ * Primary Class Developer: Evan Smedley - 101148695
+ * Contributor: Jeremy Trendoff - 101160306
+ *
+ * Date of Completion: Feb 3, 2021
+ *
+ * Class Description: A JUnit 5 test class to test the methods of the StoreManager class.
+ */
+
 public class StoreManagerTest {
     private StoreManager sm;                                // The StoreManager object to be used in each test.
     private ArrayList<Product> arr = new ArrayList<>();     // An ArrayList to set the current inventory for each test.

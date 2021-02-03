@@ -5,6 +5,9 @@ import java.util.ArrayList;
 /**
  * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
  *
+ * Primary Class Developer: Evan Smedley - 101148695
+ * Contributor: Jeremy Trendoff - 101160306
+ *
  * Date of Completion: Jan 26, 2021
  *
  * Class Description: The StoreManager manages the Inventory, ShoppingCarts and provides
