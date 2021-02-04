@@ -5,4 +5,7 @@ package SYSC2004;
  */
 
 public class StoreView {
+    public static void main(String[] args) {
+        System.out.println("Milestone 2, Baby!");
+    }
 }
