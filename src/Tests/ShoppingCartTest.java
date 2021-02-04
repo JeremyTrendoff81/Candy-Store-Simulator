@@ -1,0 +1,194 @@
+package Tests;
+
+import SYSC2004.Product;
+import SYSC2004.ShoppingCart;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
+ *
+ * Primary Class Developer: Jeremy Trendoff - 101160306
+ * Contributor: Evan Smedley - 101148695
+ *
+ * Date of Completion: Feb 04, 2021
+ *
+ * Class Description: A JUnit 5 test class to test the methods of the ShoppingCart class.
+ */
+
+class ShoppingCartTest {
+    private ShoppingCart sc;                // The ShoppingCart Object
+    private ArrayList<Product> cart = new ArrayList<>();        // The test cart
+
+    @Test
+    void addToCartSingle() {
+        Product[] products = new Product[15];   // 15 Test Products
+
+        /* Initialize test products and add them to the cart. */
+        for (int i = 0; i < products.length; i++) {
+            products[i] = new Product("Name", 1, 1.00);
+            cart.add(products[i]);
+        }
+
+        sc = new ShoppingCart(cart);    // Initialize ShoppingCart.
+
+        /* Confirm Initialization. */
+        assertNotNull(products);
+        assertNotNull(sc);
+        assertFalse(cart.isEmpty());
+
+        /* Add New Products. */
+        cart.add(new Product("New", 2, 2.00));
+        sc.addToCart(new Product("New", 2, 2.00));
+
+        /* Test addToCart() */
+        assertEquals(cart, sc.getShoppingCart());
+    }
+
+    @Test
+    void getShoppingCart() {
+        Product[] products = new Product[15];   // 15 Test Products
+
+        /* Initialize test products and add them to the cart. */
+        for (int i = 0; i < products.length; i++) {
+            products[i] = new Product("Name", 1, 1.00);
+            cart.add(products[i]);
+        }
+
+        sc = new ShoppingCart(cart);    // Initialize ShoppingCart.
+
+        /* Test getShoppingCart() */
+        assertEquals(cart, sc.getShoppingCart());
+    }
+
+    @Test
+    void addToCartMultiple() {
+        Product[] products = new Product[15];   // 15 Test Products
+
+        /* Initialize test products and add them to the cart. */
+        for (int i = 0; i < products.length; i++) {
+            products[i] = new Product("Name", 1, 1.00);
+            cart.add(products[i]);
+        }
+
+        sc = new ShoppingCart(cart);    // Initialize ShoppingCart.
+
+        /* Confirm Initialization. */
+        assertNotNull(products);
+        assertNotNull(sc);
+        assertFalse(cart.isEmpty());
+
+        /* Add more to the cart. */
+        for (int i = 0; i < 10; i++) {
+            cart.add(new Product("Name", 1, 1.00));
+        }
+
+        sc.addToCart(new Product("Name", 1, 1.00), 10);
+
+        /* Test addToCart */
+        assertEquals(cart, sc.getShoppingCart());
+    }
+
+    @Test
+    void removeFromCartSingle() {
+        Product[] products = new Product[15];   // 15 Test Products
+
+        /* Initialize test products and add them to the cart. */
+        for (int i = 0; i < products.length; i++) {
+            products[i] = new Product("Name", 1, 1.00);
+            cart.add(products[i]);
+        }
+
+        sc = new ShoppingCart(cart);    // Initialize ShoppingCart.
+
+        /* Confirm Initialization. */
+        assertNotNull(products);
+        assertNotNull(sc);
+        assertFalse(cart.isEmpty());
+
+        /* Remove from cart knowing the product */
+        cart.remove(new Product("Name", 1, 1.00));
+        sc.removeFromCart(new Product("Name", 1, 1.00));
+
+        /* Test */
+        assertEquals(cart, sc.getShoppingCart());
+
+        /* Remove from cart with getProduct() */
+        cart.remove(new Product("Name", 1, 1.00));
+        sc.removeFromCart(sc.getProduct(1));
+
+        /* Test */
+        assertEquals(cart, sc.getShoppingCart());
+    }
+
+    @Test
+    void removeFromCartMultiple() {
+        Product[] products = new Product[15];   // 15 Test Products
+
+        /* Initialize test products and add them to the cart. */
+        for (int i = 0; i < products.length; i++) {
+            products[i] = new Product("Name", 1, 1.00);
+            cart.add(products[i]);
+        }
+
+        sc = new ShoppingCart(cart);    // Initialize ShoppingCart.
+
+        /* Confirm Initialization. */
+        assertNotNull(products);
+        assertNotNull(sc);
+        assertFalse(cart.isEmpty());
+
+        /* Remove from cart knowing the product */
+        for (int i = 0; i < 10; i++) {
+            cart.remove(new Product("Name", 1, 1.00));
+        }
+
+        sc.removeFromCart(new Product("Name", 1, 1.00), 10);
+
+        /* Test */
+        assertEquals(cart, sc.getShoppingCart());
+
+        /* Remove from cart with getProduct() */
+        for (int i = 0; i < 10; i++) {
+            cart.remove(new Product("Name", 1, 1.00));
+        }
+        sc.removeFromCart(sc.getProduct(1));
+
+        /* Test */
+        assertEquals(cart, sc.getShoppingCart());
+    }
+
+    @Test
+    void getProduct() {
+        Product p1 = new Product("P1", 1, 1.00);    // Test Product 1.
+        Product p2 = new Product("P2", 2, 2.00);    // Test Product 2.
+        Product p3 = new Product("P3", 3, 3.00);    // Test Product 3.
+
+        cart.add(p1);
+        cart.add(p2);
+        cart.add(p3);
+
+        sc = new ShoppingCart(cart);
+
+        /* Test that getProduct() returns the correct product. */
+        assertEquals(p1, sc.getProduct(1));
+        assertEquals(p2, sc.getProduct(2));
+        assertEquals(p3, sc.getProduct(3));
+
+        /* Test that the product information returned is the same. */
+        assertEquals(p1.getName(), sc.getProduct(1).getName());
+        assertEquals(p1.getId(), sc.getProduct(1).getId());
+        assertEquals(p1.getPrice(), sc.getProduct(1).getPrice());
+
+        assertEquals(p2.getName(), sc.getProduct(2).getName());
+        assertEquals(p2.getId(), sc.getProduct(2).getId());
+        assertEquals(p2.getPrice(), sc.getProduct(2).getPrice());
+
+        assertEquals(p3.getName(), sc.getProduct(3).getName());
+        assertEquals(p3.getId(), sc.getProduct(3).getId());
+        assertEquals(p3.getPrice(), sc.getProduct(3).getPrice());
+    }
+}

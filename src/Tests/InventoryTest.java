@@ -41,9 +41,6 @@ public class InventoryTest {
         assertEquals(i.getStock(1), 1);
         assertEquals(i.getStock(2), 1);
         assertEquals(i.getStock(3), 1);
-
-        System.out.println("Printing Inventory After getStock() Test:");
-        i.printInventory();     // Print Resulting Inventory List
     }
 
     @Test
@@ -68,9 +65,6 @@ public class InventoryTest {
         i.addStock(p4);
 
         assertEquals(i.getStockList(), test);
-
-        System.out.println("Printing Inventory After addStock() Test 1:");
-        i.printInventory();     // Print Result
     }
 
     @Test
@@ -97,9 +91,6 @@ public class InventoryTest {
         i.addStock(p4, 3);
 
         assertEquals(i.getStockList(), test);
-
-        System.out.println("Printing Inventory After addStock() Test 2:");
-        i.printInventory();     // Print Result
     }
 
     @Test
@@ -123,9 +114,6 @@ public class InventoryTest {
         assertEquals(i.getStockList(), test);
         assertTrue(deleteResult1);
         assertFalse(deleteResult2);
-
-        System.out.println("Printing Inventory After removeStock() Test 1:");
-        i.printInventory();     // Print Result
     }
 
     @Test
@@ -137,9 +125,6 @@ public class InventoryTest {
         arr.add(p3);
 
         i = new Inventory(arr);     // Initialize Inventory
-
-        System.out.println("Printing Inventory Before removeStock() Test 2:");
-        i.printInventory();
 
         /* Expected Resulting ArrayList */
         ArrayList<Product> test = new ArrayList<>();
@@ -161,9 +146,6 @@ public class InventoryTest {
 
         assertEquals(i.getStockList(), test);
         assertFalse(deleteResult3);
-
-        System.out.println("Printing Inventory After removeStock() Test 2:");
-        i.printInventory();     // Print Result
     }
 
     @Test
@@ -180,9 +162,6 @@ public class InventoryTest {
         assertEquals(i.getProductName(2), p2.getName());
         assertEquals(i.getProductName(3), p3.getName());
         assertNull(i.getProductName(4));
-
-        System.out.println("Printing Inventory After getProductName() Test:");
-        i.printInventory();     // Print Result
     }
 
     @Test
@@ -200,9 +179,6 @@ public class InventoryTest {
         assertEquals(i.getProductPrice(2), p2.getPrice());
         assertEquals(i.getProductPrice(3), p3.getPrice());
         assertEquals(i.getProductPrice(4), -2.00);
-
-        System.out.println("Printing Inventory After getProductPrice() Test:");
-        i.printInventory();     // Print Result
     }
 
     @Test
