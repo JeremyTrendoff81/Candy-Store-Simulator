@@ -136,21 +136,21 @@ public class Inventory {
         return -2.0;
     }
 
-    /* Get all information for a given Product ID. Return information using an ArrayList. Return null if there is an error. */
+    /* Get all information for a given Product ID. Return information using an ArrayList formatted [Name, ID, Price, Amount]. Return null if method fails. */
     public ArrayList<Object> getProductInfo(int id) {
         ArrayList<Object> info = new ArrayList<>();     // ArrayList to hold all the product information
 
         try {
-            for (Product p : stockList) {
-                if (id == p.getId()) {
-                    info.add(p.getName());
-                    info.add(p.getId());
-                    info.add(p.getPrice());
-                    info.add(getStock(p.getId()));
+           String name = getProductName(id);       // The name of the product. If null, the product is not in the inventory.
 
-                    return info;
-                }
-            }
+           if (name != null) {
+               info.add(name);
+               info.add(id);
+               info.add(getProductPrice(id));
+               info.add(getStock(id));
+
+               return info;
+           }
         } catch (Exception e) {
             e.printStackTrace();
         }

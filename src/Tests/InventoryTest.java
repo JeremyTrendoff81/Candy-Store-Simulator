@@ -227,6 +227,9 @@ public class InventoryTest {
         /* Test the getProductInfo() method */
         ArrayList<Object> p1Info = i.getProductInfo(1);
         ArrayList<Object> p2Info = i.getProductInfo(2);
+        ArrayList<Object> shouldBeNull = i.getProductInfo(3);
+
+        assertNull(shouldBeNull);
 
         assertEquals("P1", p1Info.get(0));
         assertEquals(1, p1Info.get(1));
