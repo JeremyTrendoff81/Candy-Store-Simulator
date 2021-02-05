@@ -1,6 +1,7 @@
 package SYSC2004;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  */
 
 public class ShoppingCart {
-    private ArrayList<Product> shoppingCart;    // An ArrayList to hold the Shopping Cart Items.
+    private final ArrayList<Product> shoppingCart;    // An ArrayList to hold the Shopping Cart Items.
 
     /* Default Constructor. Initialize shoppingCart as a new ArrayList. */
     public ShoppingCart() {
@@ -52,12 +53,14 @@ public class ShoppingCart {
     }
 
     /* Remove a product from the shoppingCart */
-    public boolean removeFromCart(Product product) {
+    public boolean removeFromCart(int id) {
         try {
-            if (shoppingCart.contains(product)) {
-                shoppingCart.remove(product);
-                return true;
-            }
+           for (Product p : shoppingCart) {
+               if (id == p.getId()) {
+                   shoppingCart.remove(p);
+                   return true;
+               }
+           }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,15 +69,24 @@ public class ShoppingCart {
     }
 
     /* Remove a specified amount of product from the shoppingCart */
-    public boolean removeFromCart(Product product, int quantity) {
+    public boolean removeFromCart(int id, int quantity) {
         int count = 0;     // The amount of product removed.
+        ArrayList<Integer> indexes = new ArrayList<>();    // An ArrayList to hold the index's of the products to be removed.
 
         try {
-            for (int i = 0; i < quantity; i++) {
-                if (shoppingCart.contains(product)) {
-                    shoppingCart.remove(product);
-                    count++;
+            for (Product p : shoppingCart) {
+                if (id == p.getId()) {
+                    if (count < quantity) {
+                        indexes.add(shoppingCart.indexOf(p));
+                        count++;
+                    }
                 }
+            }
+
+            indexes.sort(Collections.reverseOrder());
+
+            for (int i : indexes) {
+                shoppingCart.remove(i);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -138,7 +138,6 @@ public class InventoryTest {
         assertTrue(deleteResult1);
 
         boolean deleteResult2 = i.removeStock(0, 3);
-
         assertFalse(deleteResult2);
 
         boolean deleteResult3 = i.removeStock(p2.getId(), 2);

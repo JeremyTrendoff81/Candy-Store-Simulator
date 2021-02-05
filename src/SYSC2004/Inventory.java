@@ -1,6 +1,7 @@
 package SYSC2004;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
@@ -83,20 +84,22 @@ public class Inventory {
 
     /* Remove a specified amount of stock of a given product from the inventory. Return if the products were removed properly. */
     public boolean removeStock(int id, int quantity) {
-        ArrayList<Integer> indexies = new ArrayList<>();    // An ArrayList to hold the index's of the products to be removed.
+        ArrayList<Integer> indexes = new ArrayList<>();    // An ArrayList to hold the index's of the products to be removed.
         int count = 0;                                      // The amount of products removed
 
         try {
             for (Product p : stockList) {
                 if (id == p.getId()) {
                     if (count < quantity) {
-                        indexies.add(stockList.indexOf(p));
+                        indexes.add(stockList.indexOf(p));
                         count++;
                     }
                 }
             }
 
-            for (int i : indexies) {
+            indexes.sort(Collections.reverseOrder());
+
+            for (int i : indexes) {
                 stockList.remove(i);
             }
         } catch (Exception e) {

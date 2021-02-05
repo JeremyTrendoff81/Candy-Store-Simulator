@@ -25,12 +25,14 @@ class ShoppingCartTest {
 
     @Test
     void addToCartSingle() {
+        ArrayList<Product> test = new ArrayList<>();
         Product[] products = new Product[15];   // 15 Test Products
 
         /* Initialize test products and add them to the cart. */
         for (int i = 0; i < products.length; i++) {
             products[i] = new Product("Name", 1, 1.00);
             cart.add(products[i]);
+            test.add(products[i]);
         }
 
         sc = new ShoppingCart(cart);    // Initialize ShoppingCart.
@@ -41,37 +43,42 @@ class ShoppingCartTest {
         assertFalse(cart.isEmpty());
 
         /* Add New Products. */
-        cart.add(new Product("New", 2, 2.00));
-        sc.addToCart(new Product("New", 2, 2.00));
+        Product p4 = new Product("New", 2, 2.00);
+        test.add(p4);
+        sc.addToCart(p4);
 
         /* Test addToCart() */
-        assertEquals(cart, sc.getShoppingCart());
+        assertEquals(test, sc.getShoppingCart());
     }
 
     @Test
     void getShoppingCart() {
+        ArrayList<Product> test = new ArrayList<>();
         Product[] products = new Product[15];   // 15 Test Products
 
         /* Initialize test products and add them to the cart. */
         for (int i = 0; i < products.length; i++) {
             products[i] = new Product("Name", 1, 1.00);
             cart.add(products[i]);
+            test.add(products[i]);
         }
 
         sc = new ShoppingCart(cart);    // Initialize ShoppingCart.
 
         /* Test getShoppingCart() */
-        assertEquals(cart, sc.getShoppingCart());
+        assertEquals(test, sc.getShoppingCart());
     }
 
     @Test
     void addToCartMultiple() {
         Product[] products = new Product[15];   // 15 Test Products
+        ArrayList<Product> test = new ArrayList<>();
 
         /* Initialize test products and add them to the cart. */
         for (int i = 0; i < products.length; i++) {
             products[i] = new Product("Name", 1, 1.00);
             cart.add(products[i]);
+            test.add(products[i]);
         }
 
         sc = new ShoppingCart(cart);    // Initialize ShoppingCart.
@@ -82,24 +89,27 @@ class ShoppingCartTest {
         assertFalse(cart.isEmpty());
 
         /* Add more to the cart. */
+        Product p = new Product("Name", 1, 1.00);
         for (int i = 0; i < 10; i++) {
-            cart.add(new Product("Name", 1, 1.00));
+            test.add(p);
         }
 
-        sc.addToCart(new Product("Name", 1, 1.00), 10);
+        sc.addToCart(p, 10);
 
         /* Test addToCart */
-        assertEquals(cart, sc.getShoppingCart());
+        assertEquals(test, sc.getShoppingCart());
     }
 
     @Test
     void removeFromCartSingle() {
+        ArrayList<Product> test = new ArrayList<>();
         Product[] products = new Product[15];   // 15 Test Products
 
         /* Initialize test products and add them to the cart. */
         for (int i = 0; i < products.length; i++) {
             products[i] = new Product("Name", 1, 1.00);
             cart.add(products[i]);
+            test.add(products[i]);
         }
 
         sc = new ShoppingCart(cart);    // Initialize ShoppingCart.
@@ -109,56 +119,45 @@ class ShoppingCartTest {
         assertNotNull(sc);
         assertFalse(cart.isEmpty());
 
-        /* Remove from cart knowing the product */
-        cart.remove(new Product("Name", 1, 1.00));
-        sc.removeFromCart(new Product("Name", 1, 1.00));
-
-        /* Test */
-        assertEquals(cart, sc.getShoppingCart());
-
         /* Remove from cart with getProduct() */
-        cart.remove(new Product("Name", 1, 1.00));
-        sc.removeFromCart(sc.getProduct(1));
+        test.remove(sc.getProduct(1));
+        boolean r = sc.removeFromCart(1);
 
         /* Test */
-        assertEquals(cart, sc.getShoppingCart());
+        assertTrue(r);
+        assertEquals(test, sc.getShoppingCart());
+
+        /* Test that non-existent products return false */
+        r = sc.removeFromCart(19);
+        assertFalse(r);
+        assertEquals(test, sc.getShoppingCart());
     }
 
     @Test
     void removeFromCartMultiple() {
-        Product[] products = new Product[15];   // 15 Test Products
+        Product p = new Product("Name 1", 1, 1.00);
+        Product p1 = new Product("Name 2", 1, 1.00);
+        Product p2 = new Product("Name 3", 1, 1.00);
+        Product p3 = new Product("Name 4", 1, 1.00);
 
-        /* Initialize test products and add them to the cart. */
-        for (int i = 0; i < products.length; i++) {
-            products[i] = new Product("Name", 1, 1.00);
-            cart.add(products[i]);
-        }
+        ArrayList<Product> test = new ArrayList<>();
+        test.add(p);
 
-        sc = new ShoppingCart(cart);    // Initialize ShoppingCart.
+        cart.add(p);
+        cart.add(p1);
+        cart.add(p2);
+        cart.add(p3);
 
-        /* Confirm Initialization. */
-        assertNotNull(products);
-        assertNotNull(sc);
-        assertFalse(cart.isEmpty());
+        sc = new ShoppingCart(cart);
 
-        /* Remove from cart knowing the product */
-        for (int i = 0; i < 10; i++) {
-            cart.remove(new Product("Name", 1, 1.00));
-        }
+        boolean r = sc.removeFromCart(1, 3);
 
-        sc.removeFromCart(new Product("Name", 1, 1.00), 10);
+        assertTrue(r);
+        assertEquals(p3.getId(), sc.getProduct(1).getId());
 
-        /* Test */
-        assertEquals(cart, sc.getShoppingCart());
-
-        /* Remove from cart with getProduct() */
-        for (int i = 0; i < 10; i++) {
-            cart.remove(new Product("Name", 1, 1.00));
-        }
-        sc.removeFromCart(sc.getProduct(1));
-
-        /* Test */
-        assertEquals(cart, sc.getShoppingCart());
+        r = sc.removeFromCart(2, 1);
+        assertFalse(r);
+        assertEquals(p3.getId(), sc.getProduct(1).getId());
     }
 
     @Test
