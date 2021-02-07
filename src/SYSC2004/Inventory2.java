@@ -23,6 +23,11 @@ public class Inventory2 {
         stockList = new ArrayList<>();
     }
 
+    /* Overloaded Constructor. Initializes productList and stockList to be preset values. */
+    public Inventory2(ArrayList<Product> productList, ArrayList<Integer> stockList) {
+        this.productList = productList;
+        this.stockList = stockList;
+    }
 
     /* Check if the product exists in productList. Return the index of the product or -1 if it does not exist. */
     private int haveProduct(int id) {
