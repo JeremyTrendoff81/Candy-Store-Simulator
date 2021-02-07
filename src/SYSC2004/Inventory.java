@@ -66,7 +66,7 @@ public class Inventory {
         }
     }
 
-    /* Remove a given product from the inventory. Return if the product was removed. */
+    /* Remove a given product from the inventory. Return true if the product was removed. */
     public boolean removeStock(int id) {
         try {
             for (Product p : stockList) {
