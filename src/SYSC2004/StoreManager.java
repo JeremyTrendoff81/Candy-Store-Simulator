@@ -15,16 +15,16 @@ import java.util.ArrayList;
  */
 
 public class StoreManager {
-    private Inventory inventory;  // The inventory object that the StoreManager manages
+    private Inventory2 inventory;  // The inventory object that the StoreManager manages
 
     /* Default constructor. Creates a new Inventory object to manage upon creation. */
     public StoreManager() {
-        inventory = new Inventory(); // New empty Inventory object
+        inventory = new Inventory2(); // New empty Inventory object
     }
 
     /* Constructor to create a StoreManager object and initialize the Inventory object with products. */
-    public StoreManager(ArrayList <Product> stockList) {
-        inventory = new Inventory(stockList);
+    public StoreManager(ArrayList<Product> productList, ArrayList<Integer> stockList) {
+        inventory = new Inventory2(productList, stockList);
     }
 
     /* Check how much stock of a given Product is in the inventory. */
@@ -37,7 +37,7 @@ public class StoreManager {
     the inventory. Returns a negative double and doesn't remove any of the purchases from inventory if one of the
     products is not available in the inventory.
      */
-    public double processTransaction(ArrayList <int[]> purchases) {
+    public double processTransaction(ArrayList<int[]> purchases) {
         double totalPrice = 0.0;
         double tempPrice;
         for (int[] item : purchases) {      // For loop iterates through purchases and calculates the total price
