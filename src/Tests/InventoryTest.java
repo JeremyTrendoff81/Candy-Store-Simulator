@@ -1,6 +1,6 @@
 package Tests;
 
-import SYSC2004.Inventory;
+import SYSC2004.InventoryDRAFT;
 import SYSC2004.Product;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ public class InventoryTest {
     private Product p3 = new Product("Product 3", 3, 2.00);         // Test Product
 
     private ArrayList<Product> arr = new ArrayList<>();                           // Test inventory stock ArrayList
-    private Inventory i;                                                          // Test Inventory Object
+    private InventoryDRAFT i;                                                          // Test Inventory Object
 
 
     @Test
@@ -35,7 +35,7 @@ public class InventoryTest {
         arr.add(p2);
         arr.add(p3);
 
-        i = new Inventory(arr);     // Initialize Inventory
+        i = new InventoryDRAFT(arr);     // Initialize Inventory
 
         /* Check results of getStock() against the expected value */
         assertEquals(i.getStock(1), 1);
@@ -50,7 +50,7 @@ public class InventoryTest {
         arr.add(p2);
         arr.add(p3);
 
-        i = new Inventory(arr);     // Initialize Inventory
+        i = new InventoryDRAFT(arr);     // Initialize Inventory
 
         Product p4 = new Product("New Product", 4, 2.50);   // Test product
 
@@ -74,7 +74,7 @@ public class InventoryTest {
         arr.add(p2);
         arr.add(p3);
 
-        i = new Inventory(arr);     // Initialize Inventory
+        i = new InventoryDRAFT(arr);     // Initialize Inventory
 
         Product p4 = new Product("New Product", 4, 2.50);      // Test Product
 
@@ -100,7 +100,7 @@ public class InventoryTest {
         arr.add(p2);
         arr.add(p3);
 
-        i = new Inventory(arr);     // Initialize Inventory
+        i = new InventoryDRAFT(arr);     // Initialize Inventory
 
         /* Expected Resulting ArrayList */
         ArrayList<Product> test = new ArrayList<>();
@@ -124,7 +124,7 @@ public class InventoryTest {
         arr.add(p3);
         arr.add(p3);
 
-        i = new Inventory(arr);     // Initialize Inventory
+        i = new InventoryDRAFT(arr);     // Initialize Inventory
 
         /* Expected Resulting ArrayList */
         ArrayList<Product> test = new ArrayList<>();
@@ -154,7 +154,7 @@ public class InventoryTest {
         arr.add(p2);
         arr.add(p3);
 
-        i = new Inventory(arr);     // Initialize Inventory
+        i = new InventoryDRAFT(arr);     // Initialize Inventory
 
         /* Test getProductName() */
         assertEquals(i.getProductName(1), p1.getName());
@@ -170,7 +170,7 @@ public class InventoryTest {
         arr.add(p2);
         arr.add(p3);
 
-        i = new Inventory(arr);     // Initialize Inventory
+        i = new InventoryDRAFT(arr);     // Initialize Inventory
 
 
         /* Test getProductPrice() */
@@ -197,7 +197,7 @@ public class InventoryTest {
             arr.add(p2[i]);
         }
 
-        i = new Inventory(arr);    // Initialize the inventory.
+        i = new InventoryDRAFT(arr);    // Initialize the inventory.
 
         /* Test the getProductInfo() method */
         ArrayList<Object> p1Info = i.getProductInfo(1);

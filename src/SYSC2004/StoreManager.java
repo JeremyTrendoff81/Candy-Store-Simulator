@@ -15,16 +15,16 @@ import java.util.ArrayList;
  */
 
 public class StoreManager {
-    private Inventory2 inventory;  // The inventory object that the StoreManager manages
+    private Inventory inventory;  // The inventory object that the StoreManager manages
 
     /* Default constructor. Creates a new Inventory object to manage upon creation. */
     public StoreManager() {
-        inventory = new Inventory2(); // New empty Inventory object
+        inventory = new Inventory(); // New empty Inventory object
     }
 
     /* Constructor to create a StoreManager object and initialize the Inventory object with products. */
     public StoreManager(ArrayList<Product> productList, ArrayList<Integer> stockList) {
-        inventory = new Inventory2(productList, stockList);
+        inventory = new Inventory(productList, stockList);
     }
 
     /* Check how much stock of a given Product is in the inventory. */

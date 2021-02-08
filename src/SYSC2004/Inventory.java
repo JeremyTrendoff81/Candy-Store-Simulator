@@ -1,7 +1,6 @@
 package SYSC2004;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
@@ -9,170 +8,98 @@ import java.util.Collections;
  * Primary Class Developer: Jeremy Trendoff - 101160306
  * Contributor: Evan Smedley - 101148695
  *
- * Date of Completion: Jan 25, 2021
+ * Date of Completion: Feb 7, 2021
  *
  * Class Description: The inventory class will keep track of all the products in the store.
  */
 
 public class Inventory {
-    private final ArrayList<Product> stockList; // The list of all products in the store
+    private final ArrayList<Product> productList;      // The list of all the products in the store
+    private final ArrayList<Integer> stockList;        // The list of the number of stock of each product in the store
 
-    /* Default Constructor. Initializes stockList to be empty. */
+    /* Default Constructor. Initializes productList and stockList to be empty. */
     public Inventory() {
-        stockList = new ArrayList<>(); // new empty ArrayList
+        productList = new ArrayList<>();
+        stockList = new ArrayList<>();
     }
 
-    /* Constructor to initialize an inventory based on another ArrayList */
-    public Inventory(ArrayList<Product> stockList) {
+    /* Overloaded Constructor. Initializes productList and stockList to be preset values. */
+    public Inventory(ArrayList<Product> productList, ArrayList<Integer> stockList) {
+        this.productList = productList;
         this.stockList = stockList;
     }
 
+    /* Check if the product exists in productList. Return the index of the product or -1 if it does not exist. */
+    private int haveProduct(int id) {
+        int productIndex = 0;
+        for (Product p : productList) {           // Check if there is a product with the same id in productList
+            if (p.getId() == id) {
+                return productIndex;              // Return the index of the product in productList
+            }
+            productIndex += 1;
+        }
+        return -1;                                // If product is not in productList return -1
+    }
+
+
     /* Get the amount of stock in the inventory for a given product ID. Return -1 if method fails. */
     public int getStock(int id) {
-        int stock = 0; // The amount of stock
-
-        try {
-            for (Product p : stockList) {
-                if (id == p.getId()) {
-                    stock++;
-                }
-            }
-
-            return stock;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return -1;
-    }
-
-    /* Add a given product to the inventory */
-    public void addStock(Product product) {
-        try {
-            stockList.add(product);
-        } catch (Exception e) {
-            e.printStackTrace();
+        int productIndex = haveProduct(id);
+        if (productIndex == -1) {
+            return productIndex;                  // Return -1 if there is not a product with the same id in productList
+        } else {
+            return stockList.get(productIndex);   // Rather than iterating through stockList, use random access (faster)
         }
     }
 
-    /* Add a specified amount of stock of a given product to the inventory */
+
+    /* Add a specified amount of stock of a given product to the inventory. */
     public void addStock(Product product, int quantity) {
-        try {
-            for (int i = 0; i < quantity; i++) {
-                stockList.add(product);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        int productIndex = haveProduct(product.getId());
+        if (productIndex == -1) {
+            productList.add(product);       // If the product does not exist in productList, add it to the end
+            stockList.add(quantity);        // Add the corresponding quantity of the product to stockList
+        } else {
+            stockList.set(productIndex, stockList.get(productIndex) + quantity);
+        }                                   // If the product exists in productList, update the quantity in stockList
     }
 
-    /* Remove a given product from the inventory. Return true if the product was removed. */
-    public boolean removeStock(int id) {
-        try {
-            for (Product p : stockList) {
-                if (id == p.getId()) {
-                    stockList.remove(p);
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        return false;
-    }
-
-    /* Remove a specified amount of stock of a given product from the inventory. Return if the products were removed properly. */
+    /* Remove an amount of stock of a given product. Return true if the products were removed properly. */
     public boolean removeStock(int id, int quantity) {
-        ArrayList<Integer> indexes = new ArrayList<>();    // An ArrayList to hold the index's of the products to be removed.
-        int count = 0;                                      // The amount of products removed
-
-        try {
-            for (Product p : stockList) {
-                if (id == p.getId()) {
-                    if (count < quantity) {
-                        indexes.add(stockList.indexOf(p));
-                        count++;
-                    }
-                }
+        int productIndex = haveProduct(id);
+        if ((productIndex >= 0) && (quantity < 1) && (stockList.get(productIndex) <= quantity)) {
+            if (stockList.get(productIndex) == quantity) {
+                productList.remove(productIndex);
+                stockList.remove(productIndex);
+            } else {
+                stockList.set(productIndex, stockList.get(productIndex) - quantity);
             }
-
-            indexes.sort(Collections.reverseOrder());
-
-            for (int i : indexes) {
-                stockList.remove(i);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return true;
+        } else {
+            return false;
         }
-
-        return count == quantity;
     }
+
 
     /* Get the name of a product of the given product ID. Return null if method fails. */
     public String getProductName(int id) {
-        try {
-            for (Product p : stockList) {
-                if (id == p.getId()) {
-                    return p.getName();
-                }
+        for (Product p : productList) {
+            if (p.getId() == id) {
+                return p.getName();                 // Return the name of the product
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
-        return null;
+        return null;                                // If the product does not exist in productList, return null
     }
 
-    /* Get the price of a product from the given product ID. Return -2.0 if method fails. */
+
+    /* Get the price of a product from the given product ID. Return -1.0 if method fails. */
     public double getProductPrice(int id) {
-        try {
-            for (Product p : stockList) {
-                if (id == p.getId()) {
-                    return p.getPrice();
-                }
+        for (Product p : productList) {
+            if (p.getId() == id) {
+                return p.getPrice();                // Return the price of the product
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
-        return -2.0;
+        return -1.0;                                // If the product does not exist in productList, return -1.0
     }
-
-    /* Get all information for a given Product ID. Return information using an ArrayList formatted [Name, ID, Price, Amount]. Return null if method fails. */
-    public ArrayList<Object> getProductInfo(int id) {
-        ArrayList<Object> info = new ArrayList<>();     // ArrayList to hold all the product information
-
-        try {
-           String name = getProductName(id);       // The name of the product. If null, the product is not in the inventory.
-
-           if (name != null) {
-               info.add(name);
-               info.add(id);
-               info.add(getProductPrice(id));
-               info.add(getStock(id));
-
-               return info;
-           }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    /* Prints out the current inventory */
-    public void printInventory() {
-        for (Product p : stockList) {
-            System.out.println("Name: " + p.getName());
-            System.out.println("Id: " + p.getId());
-            System.out.println("Price: " + p.getPrice() + "\n");
-        }
-    }
-
-    /* Get the current inventory */
-    public ArrayList<Product> getStockList() {
-        return stockList;
-    }
-
 }
