@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Class Description: A JUnit 5 test class to test the methods of the Inventory class.
  */
 
-public class InventoryTest {
+public class InventoryTestDRAFT {
     private Product p1 = new Product("Product 1", 1, 1.00);         // Test Product
     private Product p2 = new Product("Product 2", 2, 1.50);         // Test Product
     private Product p3 = new Product("Product 3", 3, 2.00);         // Test Product
