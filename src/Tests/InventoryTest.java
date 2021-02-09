@@ -19,11 +19,13 @@ class InventoryTest {
         products.add(new Product("P1", 1, 1.00));
         amount.add(15);
 
-
+        products.add(new Product("P2", 2, 2.00));
+        amount.add(7);
 
         inventory = new Inventory(products, amount);
 
         assertEquals(15, inventory.getStock(1));
+        assertEquals(7, inventory.getStock(2));
         assertEquals(-1, inventory.getStock(100));
     }
 
