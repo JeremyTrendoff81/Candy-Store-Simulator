@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 
 public class StoreManager {
-    private Inventory inventory;  // The inventory object that the StoreManager manages
+    private final Inventory inventory;  // The inventory object that the StoreManager manages
 
     /* Default constructor. Creates a new Inventory object to manage upon creation. */
     public StoreManager() {
@@ -37,19 +37,18 @@ public class StoreManager {
     the inventory. Returns a negative double and doesn't remove any of the purchases from inventory if one of the
     products is not available in the inventory.
      */
-    public double processTransaction(ArrayList<int[]> purchases) {
-        double totalPrice = 0.0;
-        double tempPrice;
-        for (int[] item : purchases) {      // For loop iterates through purchases and calculates the total price
-            tempPrice = inventory.getProductPrice(item[0]);
-            if (tempPrice < 0) {
-                return tempPrice;     // Returns a negative number if a Product doesn't exist in inventory
-            } else {
-                totalPrice += tempPrice * item[1];
+    public double processTransaction(int[][] purchases) {
+        int itemStock;
+        for (int[] purchase : purchases) {
+            itemStock = inventory.getStock(purchase[0]);
+            if ((itemStock < 0) || (itemStock < purchase[1])) {
+                return -1.0;
             }
         }
-        for (int[] item : purchases) {      // This second for loop is so that items are only removed from inventory
-            inventory.removeStock(item[0], item[1]);     // when we know that all products exist in inventory.
+        double totalPrice = 0.0;
+        for (int[] purchase : purchases) {
+            totalPrice += (inventory.getProductPrice(purchase[0])) * purchase[1];
+            inventory.removeStock(purchase[0], purchase[1]);
         }
         return totalPrice;
     }

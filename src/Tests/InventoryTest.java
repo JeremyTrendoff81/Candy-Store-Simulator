@@ -35,6 +35,16 @@ class InventoryTest {
 
     @Test
     void removeStock() {
+        products.add(new Product("P1", 1, 1.00));
+        amount.add(15);
+
+        products.add(new Product("P2", 2, 2.00));
+        amount.add(7);
+
+        inventory = new Inventory(products, amount);
+
+        assertTrue(inventory.removeStock(1, 6));
+        assertFalse(inventory.removeStock(2, 8));
     }
 
     @Test

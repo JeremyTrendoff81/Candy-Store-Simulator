@@ -46,7 +46,7 @@ public class Inventory {
     public int getStock(int id) {
         int productIndex = haveProduct(id);
         if (productIndex == -1) {
-            return productIndex;                  // Return -1 if there is not a product with the same id in productList
+            return productIndex;                  // Return -1 if there is no product with the same id in productList
         } else {
             return stockList.get(productIndex);   // Rather than iterating through stockList, use random access (faster)
         }
@@ -68,7 +68,7 @@ public class Inventory {
     /* Remove an amount of stock of a given product. Return true if the products were removed properly. */
     public boolean removeStock(int id, int quantity) {
         int productIndex = haveProduct(id);
-        if ((productIndex >= 0) && (quantity < 1) && (stockList.get(productIndex) <= quantity)) {
+        if ((productIndex >= 0) && (quantity > 0) && (stockList.get(productIndex) <= quantity)) {
             if (stockList.get(productIndex) == quantity) {
                 productList.remove(productIndex);
                 stockList.remove(productIndex);
