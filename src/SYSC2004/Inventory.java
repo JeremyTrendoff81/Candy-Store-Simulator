@@ -17,19 +17,31 @@ public class Inventory {
     private ArrayList<Product> productList;      // The list of all the products in the store
     private ArrayList<Integer> stockList;        // The list of the number of stock of each product in the store
 
-    /* Default Constructor. Initializes productList and stockList to be empty. */
+    /**
+     * Default Constructor. Initializes productList and stockList to be empty.
+     */
     public Inventory() {
         productList = new ArrayList<>();
         stockList = new ArrayList<>();
     }
 
-    /* Overloaded Constructor. Initializes productList and stockList to be preset values. */
+    /**
+     * Overloaded Constructor. Initializes productList and stockList to be preset values.
+     *
+     * @param productList Parameter, of type ArrayList<Product></Product>, to represent the initial products to be added to the inventory.
+     * @param stockList Parameter, of type ArrayList<Integer></Integer>, to represent the amount of stock for each initial product.
+     */
     public Inventory(ArrayList<Product> productList, ArrayList<Integer> stockList) {
         this.productList = productList;
         this.stockList = stockList;
     }
 
-    /* Check if the product exists in productList. Return the index of the product or -1 if it does not exist. */
+    /**
+     * Check if the product exists in productList.
+     *
+     * @param id Parameter, of type int, to represent the ID of the product that will be checked.
+     * @return Return the index of the product or -1 if it does not exist.
+     */
     private int haveProduct(int id) {
         for (Product p : productList) {           // Check if there is a product with the same id in productList
             if (p.getId() == id) {
@@ -39,8 +51,12 @@ public class Inventory {
         return -1;                                // If product is not in productList return -1
     }
 
-
-    /* Get the amount of stock in the inventory for a given product ID. Return -1 if method fails. */
+    /**
+     * Get the amount of stock in the inventory for a given product ID.
+     *
+     * @param id Parameter, of type int, to represent the product ID.
+     * @return Return the amount of stock for the product. Return -1 if method fails.
+     */
     public int getStock(int id) {
         int productIndex = haveProduct(id);     // The index of the product and its related quantity
 
@@ -51,8 +67,12 @@ public class Inventory {
         }
     }
 
-
-    /* Add a specified amount of stock of a given product to the inventory. */
+    /**
+     * Add a specified amount of stock of a given product to the inventory.
+     *
+     * @param product Parameter, of type Product, to represent the given product.
+     * @param quantity Parameter, of type int, to represent the quantity of stock to add.
+     */
     public void addStock(Product product, int quantity) {
         int productIndex = haveProduct(product.getId());    // The index of the product and its related quantity
 
@@ -64,8 +84,13 @@ public class Inventory {
         }                                   // If the product exists in productList, update the quantity in stockList
     }
 
-
-    /* Remove an amount of stock of a given product. Return true if the products were removed properly. */
+    /**
+     * Remove an amount of stock of a given product.
+     *
+     * @param id Parameter, of type int, to represent the product ID.
+     * @param quantity Parameter, of type int, to represent the quantity of stock to remove.
+     * @return Return true if the products were removed properly.
+     */
     public boolean removeStock(int id, int quantity) {
         int productIndex = haveProduct(id);     // The index of the product and its related quantity
 
@@ -82,8 +107,12 @@ public class Inventory {
         }
     }
 
-
-    /* Get the name of a product of the given product ID. Return null if method fails. */
+    /**
+     * Get the name of a product of the given product ID.
+     *
+     * @param id Parameter, of type int, to represent the product ID.
+     * @return Return null if method fails.
+     */
     public String getProductName(int id) {
         for (Product p : productList) {
             if (p.getId() == id) {
@@ -93,8 +122,12 @@ public class Inventory {
         return null;                                // If the product does not exist in productList, return null
     }
 
-
-    /* Get the price of a product from the given product ID. Return -1.0 if method fails. */
+    /**
+     * Get the price of a product from the given product ID.
+     *
+     * @param id Parameter, of type int, to represent the product ID.
+     * @return Return -1.0 if method fails.
+     */
     public double getProductPrice(int id) {
         for (Product p : productList) {
             if (p.getId() == id) {
