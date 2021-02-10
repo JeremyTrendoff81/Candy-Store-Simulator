@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 
 public class Inventory {
-    private final ArrayList<Product> productList;      // The list of all the products in the store
-    private final ArrayList<Integer> stockList;        // The list of the number of stock of each product in the store
+    private ArrayList<Product> productList;      // The list of all the products in the store
+    private ArrayList<Integer> stockList;        // The list of the number of stock of each product in the store
 
     /* Default Constructor. Initializes productList and stockList to be empty. */
     public Inventory() {
