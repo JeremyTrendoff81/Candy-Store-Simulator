@@ -28,8 +28,8 @@ public class Inventory {
     /**
      * Overloaded Constructor. Initializes productList and stockList to be preset values.
      *
-     * @param productList Parameter, of type ArrayList<Product></Product>, to represent the initial products to be added to the inventory.
-     * @param stockList Parameter, of type ArrayList<Integer></Integer>, to represent the amount of stock for each initial product.
+     * @param productList Parameter, of type ArrayList<Product></Product>, represents products to add to the inventory.
+     * @param stockList Parameter, of type ArrayList<Integer></Integer>, represents amount of stock for each product.
      */
     public Inventory(ArrayList<Product> productList, ArrayList<Integer> stockList) {
         this.productList = productList;

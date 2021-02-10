@@ -71,8 +71,8 @@ public class ShoppingCart {
     /* Remove a specified amount of product from the shoppingCart */
     public boolean removeFromCart(int id, int quantity) {
         int count = 0;     // The amount of product removed.
-        ArrayList<Integer> indexes = new ArrayList<>();    // An ArrayList to hold the index's of the products to be removed.
-
+        ArrayList<Integer> indexes = new ArrayList<>();
+                                                    // An ArrayList to hold the index's of the products to be removed.
         try {
             for (Product p : shoppingCart) {
                 if (id == p.getId()) {
