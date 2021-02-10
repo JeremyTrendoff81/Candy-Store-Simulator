@@ -71,7 +71,7 @@ public class Inventory {
      * Add a specified amount of stock of a given product to the inventory.
      *
      * @param product Parameter, of type Product, to represent the given product.
-     * @param quantity Parameter, of type int, to represent the quantity of stock to add.
+     * @param quantity Parameter, of type int, to represent the quantity of stock to add, must be >= 0.
      */
     public void addStock(Product product, int quantity) {
         int productIndex = haveProduct(product.getId());    // The index of the product and its related quantity
@@ -88,7 +88,7 @@ public class Inventory {
      * Remove an amount of stock of a given product ID.
      *
      * @param id Parameter, of type int, to represent the product ID.
-     * @param quantity Parameter, of type int, to represent the quantity of stock to remove.
+     * @param quantity Parameter, of type int, to represent the quantity of stock to remove, must be >= 0.
      * @return Return true if the products were removed properly.
      */
     public boolean removeStock(int id, int quantity) {
