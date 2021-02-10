@@ -3,9 +3,6 @@ package SYSC2004;
 /**
  * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
  *
- * Primary Class Developer: Jeremy Trendoff - 101160306
- * Contributor: Evan Smedley - 101148695
- *
  * Date of Completion: Jan 25, 2021
  *
  * Class Description: The product class will store information about the items being sold by the store.
