@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 
 public class StoreManager {
-    private Inventory inventory;  // The inventory object that the StoreManager manages
+    private final Inventory inventory;  // The inventory object that the StoreManager manages
 
     /**
      * Default constructor. Creates a new Inventory object to manage upon creation.
