@@ -27,8 +27,8 @@ public class StoreManager {
     /**
      * Constructor to create a StoreManager object and initialize the Inventory object with products.
      *
-     * @param productList Parameter, of type ArrayList<Product></Product>, to represent the initial products to be added to the inventory.
-     * @param stockList Parameter, of type ArrayList<Integer></Integer>, to represent the amount of stock for each initial product.
+     * @param productList Parameter, of type ArrayList<Product></Product>, represents products to add to the inventory.
+     * @param stockList Parameter, of type ArrayList<Integer></Integer>, represents amount of stock for each product.
      */
     public StoreManager(ArrayList<Product> productList, ArrayList<Integer> stockList) {
         inventory = new Inventory(productList, stockList);
@@ -49,8 +49,8 @@ public class StoreManager {
      * the inventory.
      *
      * @param purchases Parameter, of type int[][], to represent the transactions to be processed.
-     * @return Return the total price for the transactions. Returns a negative double and doesn't remove any of the purchases from inventory if one of the
-     * products is not available in the inventory.
+     * @return Return the total price for the transactions. Returns a negative double and doesn't remove any of the
+     * purchases from inventory if one of the products is not available in the inventory.
      */
     public double processTransaction(int[][] purchases) {
         int itemStock;
