@@ -85,7 +85,7 @@ public class Inventory {
     }
 
     /**
-     * Remove an amount of stock of a given product.
+     * Remove an amount of stock of a given product ID.
      *
      * @param id Parameter, of type int, to represent the product ID.
      * @param quantity Parameter, of type int, to represent the quantity of stock to remove.
