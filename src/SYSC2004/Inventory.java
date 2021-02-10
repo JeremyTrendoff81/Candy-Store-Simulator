@@ -31,12 +31,10 @@ public class Inventory {
 
     /* Check if the product exists in productList. Return the index of the product or -1 if it does not exist. */
     private int haveProduct(int id) {
-        int productIndex = 0;
         for (Product p : productList) {           // Check if there is a product with the same id in productList
             if (p.getId() == id) {
-                return productIndex;              // Return the index of the product in productList
+                return productList.indexOf(p);              // Return the index of the product in productList
             }
-            productIndex += 1;
         }
         return -1;                                // If product is not in productList return -1
     }
@@ -44,7 +42,8 @@ public class Inventory {
 
     /* Get the amount of stock in the inventory for a given product ID. Return -1 if method fails. */
     public int getStock(int id) {
-        int productIndex = haveProduct(id);
+        int productIndex = haveProduct(id);     // The index of the product and its related quantity
+
         if (productIndex == -1) {
             return productIndex;                  // Return -1 if there is no product with the same id in productList
         } else {
@@ -55,7 +54,8 @@ public class Inventory {
 
     /* Add a specified amount of stock of a given product to the inventory. */
     public void addStock(Product product, int quantity) {
-        int productIndex = haveProduct(product.getId());
+        int productIndex = haveProduct(product.getId());    // The index of the product and its related quantity
+
         if (productIndex == -1) {
             productList.add(product);       // If the product does not exist in productList, add it to the end
             stockList.add(quantity);        // Add the corresponding quantity of the product to stockList
@@ -67,8 +67,9 @@ public class Inventory {
 
     /* Remove an amount of stock of a given product. Return true if the products were removed properly. */
     public boolean removeStock(int id, int quantity) {
-        int productIndex = haveProduct(id);
-        if ((productIndex >= 0) && (quantity > 0) && (stockList.get(productIndex) <= quantity)) {
+        int productIndex = haveProduct(id);     // The index of the product and its related quantity
+
+        if ((productIndex >= 0) && (stockList.get(productIndex) >= quantity)) {
             if (stockList.get(productIndex) == quantity) {
                 productList.remove(productIndex);
                 stockList.remove(productIndex);

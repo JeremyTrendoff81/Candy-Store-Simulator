@@ -44,16 +44,30 @@ class StoreManagerTest {
         int[][] order2 = {{2, 1},{2,1}};
         int[][] order3 = {{2, 3},{1, 1}};
 
+        boolean print = false;
+
         assertEquals(manager.processTransaction(order1), -1.0);
-        System.out.println(manager.checkStock(new Product("hi",1, 40.00)));
-        System.out.println(manager.checkStock(new Product("hello", 2, 45.00)));
+        if (print) {
+            System.out.println(manager.checkStock(new Product("hi", 1, 40.00)));
+            System.out.println(manager.checkStock(new Product("hello", 2, 45.00)));
+        }
+
+        stockList.set(0, 2);
+        stockList.set(1, 4);
 
         assertEquals(manager.processTransaction(order2), 90.00);
-        System.out.println(manager.checkStock(new Product("hi",1, 40.00)));
-        System.out.println(manager.checkStock(new Product("hello", 2, 45.00)));
+        if (print) {
+            System.out.println(manager.checkStock(new Product("hi", 1, 40.00)));
+            System.out.println(manager.checkStock(new Product("hello", 2, 45.00)));
+        }
+
+        stockList.set(0, 2);
+        stockList.set(1, 4);
 
         assertEquals(manager.processTransaction(order3), 175.00);
-        System.out.println(manager.checkStock(new Product("hi",1, 40.00)));
-        System.out.println(manager.checkStock(new Product("hello", 2, 45.00)));
+        if (print) {
+            System.out.println(manager.checkStock(new Product("hi", 1, 40.00)));
+            System.out.println(manager.checkStock(new Product("hello", 2, 45.00)));
+        }
     }
 }

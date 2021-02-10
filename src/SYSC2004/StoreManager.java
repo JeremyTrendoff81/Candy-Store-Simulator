@@ -47,7 +47,7 @@ public class StoreManager {
         }
         double totalPrice = 0.0;
         for (int[] purchase : purchases) {
-            totalPrice += (inventory.getProductPrice(purchase[0])) * purchase[1];
+            totalPrice += (inventory.getProductPrice(purchase[0]) * purchase[1]);
             inventory.removeStock(purchase[0], purchase[1]);
         }
         return totalPrice;
