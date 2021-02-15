@@ -1,6 +1,8 @@
-package SYSC2004;
+package SYSC2004.OldCode;
 
-import java.util.HashMap;
+import SYSC2004.CurrentCode.Product;
+
+import java.util.ArrayList;
 
 /**
  * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
@@ -8,22 +10,30 @@ import java.util.HashMap;
  * Primary Class Developer: Evan Smedley - 101148695
  * Contributor: Jeremy Trendoff - 101160306
  *
- * Date of Completion: Feb 12, 2021
+ * Date of Completion: Jan 26, 2021
  *
  * Class Description: The StoreManager manages the Inventory, ShoppingCarts and provides
  * information to the StoreView class.
  */
 
-public class StoreManagerHASHMAP {
-    private final InventoryHASHMAP inventory;     // The inventory object that the StoreManager manages
+public class StoreManagerDRAFT {
+    private final InventoryARRAYLIST inventoryARRAYLIST;  // The inventory object that the StoreManager manages
+
+    /**
+     * Default constructor. Creates a new Inventory object to manage upon creation.
+     */
+    public StoreManagerDRAFT() {
+        inventoryARRAYLIST = new InventoryARRAYLIST(); // New empty Inventory object
+    }
 
     /**
      * Constructor to create a StoreManager object and initialize the Inventory object with products.
      *
-     * @param stockMap Parameter, of type HashMap<Product, Integer></Product,>, represents the products in the inventory.
+     * @param productList Parameter, of type ArrayList<Product></Product>, represents products to add to the inventory.
+     * @param stockList Parameter, of type ArrayList<Integer></Integer>, represents amount of stock for each product.
      */
-    public StoreManagerHASHMAP(HashMap<Product, Integer> stockMap) {
-        inventory = new InventoryHASHMAP(stockMap);
+    public StoreManagerDRAFT(ArrayList<Product> productList, ArrayList<Integer> stockList) {
+        inventoryARRAYLIST = new InventoryARRAYLIST(productList, stockList);
     }
 
     /**
@@ -33,7 +43,7 @@ public class StoreManagerHASHMAP {
      * @return Return the amount of stock for the given product. Return -1 if method fails.
      */
     public int checkStock(Product product) {
-        return inventory.getStock(product.getId());
+        return inventoryARRAYLIST.getStock(product.getId());
     }
 
     /**
@@ -47,15 +57,15 @@ public class StoreManagerHASHMAP {
     public double processTransaction(int[][] purchases) {
         int itemStock;
         for (int[] purchase : purchases) {
-            itemStock = inventory.getStock(purchase[0]);
+            itemStock = inventoryARRAYLIST.getStock(purchase[0]);
             if ((itemStock < 0) || (itemStock < purchase[1])) {
                 return -1.0;
             }
         }
         double totalPrice = 0.0;
         for (int[] purchase : purchases) {
-            totalPrice += (inventory.getProductPrice(purchase[0]) * purchase[1]);
-            inventory.removeStock(purchase[0], purchase[1]);
+            totalPrice += (inventoryARRAYLIST.getProductPrice(purchase[0]) * purchase[1]);
+            inventoryARRAYLIST.removeStock(purchase[0], purchase[1]);
         }
         return totalPrice;
     }

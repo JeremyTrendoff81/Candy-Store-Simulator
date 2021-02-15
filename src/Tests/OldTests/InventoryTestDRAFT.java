@@ -1,7 +1,7 @@
-package Tests;
+package Tests.OldTests;
 
-import SYSC2004.InventoryDRAFT;
-import SYSC2004.Product;
+import SYSC2004.OldCode.InventoryDRAFT;
+import SYSC2004.CurrentCode.Product;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

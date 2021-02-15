@@ -1,4 +1,4 @@
-package SYSC2004;
+package SYSC2004.CurrentCode;
 
 import java.util.HashMap;
 
@@ -13,7 +13,7 @@ import java.util.HashMap;
  * Class Description: The inventory class will keep track of all the products in the store.
  */
 
-public class InventoryHASHMAP {
+public class Inventory {
     private final HashMap<Product, Integer> stockMap;       // A HashMap to hold the types of Products and their quantities.
 
     /**
@@ -21,7 +21,7 @@ public class InventoryHASHMAP {
      *
      * @param stockMap Represents the contents of the inventory.
      */
-    public InventoryHASHMAP(HashMap<Product, Integer> stockMap) {
+    public Inventory(HashMap<Product, Integer> stockMap) {
         this.stockMap = stockMap;
     }
 

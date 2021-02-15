@@ -1,4 +1,6 @@
-package SYSC2004;
+package SYSC2004.CurrentCode;
+
+import SYSC2004.CurrentCode.Product;
 
 import java.util.HashMap;
 

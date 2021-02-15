@@ -1,6 +1,6 @@
-package Tests;
+package Tests.MainTests;
 
-import SYSC2004.Product;
+import SYSC2004.CurrentCode.Product;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,6 +1,9 @@
-package SYSC2004;
+package SYSC2004.CurrentCode;
 
-import java.util.ArrayList;
+import SYSC2004.CurrentCode.Inventory;
+import SYSC2004.CurrentCode.Product;
+
+import java.util.HashMap;
 
 /**
  * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
@@ -8,30 +11,22 @@ import java.util.ArrayList;
  * Primary Class Developer: Evan Smedley - 101148695
  * Contributor: Jeremy Trendoff - 101160306
  *
- * Date of Completion: Jan 26, 2021
+ * Date of Completion: Feb 12, 2021
  *
  * Class Description: The StoreManager manages the Inventory, ShoppingCarts and provides
  * information to the StoreView class.
  */
 
 public class StoreManager {
-    private final Inventory inventory;  // The inventory object that the StoreManager manages
-
-    /**
-     * Default constructor. Creates a new Inventory object to manage upon creation.
-     */
-    public StoreManager() {
-        inventory = new Inventory(); // New empty Inventory object
-    }
+    private final Inventory inventory;     // The inventory object that the StoreManager manages
 
     /**
      * Constructor to create a StoreManager object and initialize the Inventory object with products.
      *
-     * @param productList Parameter, of type ArrayList<Product></Product>, represents products to add to the inventory.
-     * @param stockList Parameter, of type ArrayList<Integer></Integer>, represents amount of stock for each product.
+     * @param stockMap Parameter, of type HashMap<Product, Integer></Product,>, represents the products in the inventory.
      */
-    public StoreManager(ArrayList<Product> productList, ArrayList<Integer> stockList) {
-        inventory = new Inventory(productList, stockList);
+    public StoreManager(HashMap<Product, Integer> stockMap) {
+        inventory = new Inventory(stockMap);
     }
 
     /**

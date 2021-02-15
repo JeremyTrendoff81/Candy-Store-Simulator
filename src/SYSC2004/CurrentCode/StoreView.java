@@ -1,4 +1,4 @@
-package SYSC2004;
+package SYSC2004.CurrentCode;
 
 /**
  * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695

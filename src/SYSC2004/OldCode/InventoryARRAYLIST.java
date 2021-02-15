@@ -1,4 +1,6 @@
-package SYSC2004;
+package SYSC2004.OldCode;
+
+import SYSC2004.CurrentCode.Product;
 
 import java.util.ArrayList;
 
@@ -13,14 +15,14 @@ import java.util.ArrayList;
  * Class Description: The inventory class will keep track of all the products in the store.
  */
 
-public class Inventory {
+public class InventoryARRAYLIST {
     private final ArrayList<Product> productList;      // The list of all the products in the store
     private final ArrayList<Integer> stockList;        // The list of the number of stock of each product in the store
 
     /**
      * Default Constructor. Initializes productList and stockList to be empty.
      */
-    public Inventory() {
+    public InventoryARRAYLIST() {
         productList = new ArrayList<>();
         stockList = new ArrayList<>();
     }
@@ -31,7 +33,7 @@ public class Inventory {
      * @param productList Parameter, of type ArrayList<Product></Product>, represents products to add to the inventory.
      * @param stockList Parameter, of type ArrayList<Integer></Integer>, represents amount of stock for each product.
      */
-    public Inventory(ArrayList<Product> productList, ArrayList<Integer> stockList) {
+    public InventoryARRAYLIST(ArrayList<Product> productList, ArrayList<Integer> stockList) {
         this.productList = productList;
         this.stockList = stockList;
     }

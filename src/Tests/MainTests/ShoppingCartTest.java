@@ -1,7 +1,7 @@
-package Tests;
+package Tests.MainTests;
 
-import SYSC2004.Product;
-import SYSC2004.ShoppingCart;
+import SYSC2004.CurrentCode.Product;
+import SYSC2004.CurrentCode.ShoppingCart;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

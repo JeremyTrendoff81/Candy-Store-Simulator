@@ -1,22 +1,21 @@
-package Tests;
+package Tests.MainTests;
 
-import SYSC2004.Product;
-import SYSC2004.StoreManager;
-import SYSC2004.StoreManagerHASHMAP;
+import SYSC2004.CurrentCode.Product;
+import SYSC2004.CurrentCode.StoreManager;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StoreManagerHASHMAPTest {
+class StoreManagerTest {
 
     @Test
     void checkStock() {
         HashMap<Product, Integer> test = new HashMap<>();
         test.put(new Product("P1", 1, 1.00), 10);
 
-        StoreManagerHASHMAP smh = new StoreManagerHASHMAP(test);
+        StoreManager smh = new StoreManager(test);
 
         assertEquals(10, smh.checkStock(new Product("P1", 1, 1.00)));
         assertEquals(-1, smh.checkStock(new Product("", 2, 2.00)));
@@ -30,7 +29,7 @@ class StoreManagerHASHMAPTest {
         test.put(p1, 2);
         test.put(p2, 4);
 
-        StoreManagerHASHMAP manager = new StoreManagerHASHMAP(test);
+        StoreManager manager = new StoreManager(test);
 
         int[][] order1 = {{1, 2},{2, 5}};
         int[][] order2 = {{2, 1},{2,1}};

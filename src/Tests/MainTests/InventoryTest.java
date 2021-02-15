@@ -1,14 +1,14 @@
-package Tests;
+package Tests.MainTests;
 
-import SYSC2004.InventoryHASHMAP;
-import SYSC2004.Product;
+import SYSC2004.CurrentCode.Inventory;
+import SYSC2004.CurrentCode.Product;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class InventoryHASHMAPTest {
+class InventoryTest {
 
     @Test
     void getStock() {
@@ -17,7 +17,7 @@ class InventoryHASHMAPTest {
         quantities.put(new Product("P1", 1, 1.00), 10);
         quantities.put(new Product("P2", 2, 2.00), 20);
 
-        InventoryHASHMAP ihm = new InventoryHASHMAP(quantities);
+        Inventory ihm = new Inventory(quantities);
 
         assertEquals(10, ihm.getStock(1));
         assertEquals(20, ihm.getStock(2));
@@ -31,7 +31,7 @@ class InventoryHASHMAPTest {
         quantities.put(new Product("P1", 1, 1.00), 10);
         quantities.put(new Product("P2", 2, 2.00), 20);
 
-        InventoryHASHMAP ihm = new InventoryHASHMAP(quantities);
+        Inventory ihm = new Inventory(quantities);
 
         ihm.addStock(new Product("P1", 1, 1.00), 10);
         assertEquals(20, ihm.getStock(1));
@@ -54,7 +54,7 @@ class InventoryHASHMAPTest {
         quantities.put(new Product("P1", 1, 1.00), 10);
         quantities.put(new Product("P2", 2, 2.00), 20);
 
-        InventoryHASHMAP ihm = new InventoryHASHMAP(quantities);
+        Inventory ihm = new Inventory(quantities);
 
         boolean test1 = ihm.removeStock(1, 5);
         assertTrue(test1);
@@ -79,7 +79,7 @@ class InventoryHASHMAPTest {
         quantities.put(new Product("P1", 1, 1.00), 10);
         quantities.put(new Product("P2", 2, 2.00), 20);
 
-        InventoryHASHMAP ihm = new InventoryHASHMAP(quantities);
+        Inventory ihm = new Inventory(quantities);
 
         assertEquals(1.00, ihm.getProductPrice(1));
         assertEquals(2.00, ihm.getProductPrice(2));
@@ -93,7 +93,7 @@ class InventoryHASHMAPTest {
         quantities.put(new Product("P1", 1, 1.00), 10);
         quantities.put(new Product("P2", 2, 2.00), 20);
 
-        InventoryHASHMAP ihm = new InventoryHASHMAP(quantities);
+        Inventory ihm = new Inventory(quantities);
 
         assertEquals("P1", ihm.getProductName(1));
         assertEquals("P2", ihm.getProductName(2));

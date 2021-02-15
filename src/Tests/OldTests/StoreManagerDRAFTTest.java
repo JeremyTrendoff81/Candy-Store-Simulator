@@ -1,13 +1,13 @@
-package Tests;
+package Tests.OldTests;
 
-import SYSC2004.Product;
-import SYSC2004.StoreManager;
+import SYSC2004.CurrentCode.Product;
+import SYSC2004.OldCode.StoreManagerDRAFT;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StoreManagerTest {
+class StoreManagerDRAFTTest {
 
     @org.junit.jupiter.api.Test
     void checkStock() {
@@ -20,7 +20,7 @@ class StoreManagerTest {
         productList.add(new Product("hello", 2, 45.00));
         stockList.add(4);
 
-        StoreManager manager = new StoreManager(productList, stockList);
+        StoreManagerDRAFT manager = new StoreManagerDRAFT(productList, stockList);
 
         assertEquals(6, manager.checkStock(new Product("hi", 1, 40.00)));
         assertEquals(-1, manager.checkStock(new Product("askdf",3,50.00)));
@@ -38,7 +38,7 @@ class StoreManagerTest {
         productList.add(new Product("hello", 2, 45.00));
         stockList.add(4);
 
-        StoreManager manager = new StoreManager(productList, stockList);
+        StoreManagerDRAFT manager = new StoreManagerDRAFT(productList, stockList);
 
         int[][] order1 = {{1, 2},{2, 5}};
         int[][] order2 = {{2, 1},{2,1}};
