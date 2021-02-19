@@ -1,7 +1,7 @@
 package Tests.OldTests;
 
-import SYSC2004.OldCode.InventoryDRAFT;
-import SYSC2004.CurrentCode.Product;
+import SYSC2004.Milestone1_Draft.InventoryDRAFT;
+import SYSC2004.Milestone1_HashMap.Product;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

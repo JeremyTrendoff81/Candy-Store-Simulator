@@ -1,7 +1,7 @@
-package Tests.MainTests;
+package Tests.Milestone1Tests;
 
-import SYSC2004.CurrentCode.Inventory;
-import SYSC2004.CurrentCode.Product;
+import SYSC2004.Milestone1_HashMap.Inventory;
+import SYSC2004.Milestone1_HashMap.Product;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

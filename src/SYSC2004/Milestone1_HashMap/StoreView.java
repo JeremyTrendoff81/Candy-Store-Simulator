@@ -1,6 +1,4 @@
-package SYSC2004.CurrentCode;
-
-import org.w3c.dom.ls.LSOutput;
+package SYSC2004.Milestone1_HashMap;
 
 import java.util.HashMap;
 import java.util.Scanner;

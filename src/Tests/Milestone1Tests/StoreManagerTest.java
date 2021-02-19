@@ -1,12 +1,5 @@
-package Tests.MainTests;
+package Tests.Milestone1Tests;
 
-import SYSC2004.CurrentCode.Product;
-import SYSC2004.CurrentCode.StoreManager;
-import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-
-import static org.junit.jupiter.api.Assertions.*;
 /*
 class StoreManagerTest {
 

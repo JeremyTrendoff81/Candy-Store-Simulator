@@ -1,7 +1,7 @@
 package Tests.OldTests;
 
-import SYSC2004.CurrentCode.Product;
-import SYSC2004.OldCode.StoreManagerDRAFT;
+import SYSC2004.Milestone1_HashMap.Product;
+import SYSC2004.Milestone1_Draft.StoreManagerDRAFT;
 
 import java.util.ArrayList;
 

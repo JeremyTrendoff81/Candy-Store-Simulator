@@ -1,6 +1,6 @@
-package SYSC2004.OldCode;
+package SYSC2004.Milestone1_Draft;
 
-import SYSC2004.CurrentCode.Product;
+import SYSC2004.Milestone1_HashMap.Product;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package SYSC2004.CurrentCode;
+package SYSC2004.Milestone1_HashMap;
 
 import java.util.HashMap;
 

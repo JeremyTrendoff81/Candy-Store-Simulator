@@ -1,6 +1,6 @@
-package Tests.MainTests;
+package Tests.Milestone1Tests;
 
-import SYSC2004.CurrentCode.Product;
+import SYSC2004.Milestone1_HashMap.Product;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
