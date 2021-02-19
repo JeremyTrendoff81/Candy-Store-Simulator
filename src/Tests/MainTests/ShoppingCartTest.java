@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/*
 class ShoppingCartTest {
     HashMap<Product, Integer> test = new HashMap<>();
     ShoppingCart sc;
@@ -73,4 +73,4 @@ class ShoppingCartTest {
         assertFalse(test4);
         assertNull(sc.haveProduct(5));
     }
-}
+}*/

@@ -18,15 +18,20 @@ import java.util.HashMap;
  */
 
 public class StoreManager {
+
+    /**
+     *
+     */
     private final Inventory inventory;     // The inventory object that the StoreManager manages
 
     /**
-     * Constructor to create a StoreManager object and initialize the Inventory object with products.
      *
-     * @param stockMap Parameter, of type HashMap<Product, Integer></Product,>, represents the products in the inventory.
      */
-    public StoreManager(HashMap<Product, Integer> stockMap) {
-        inventory = new Inventory(stockMap);
+    private int numStoreView = 0;
+
+    public StoreManager(HashMap<Product, Integer> map) {
+        this.inventory = new Inventory(map);
+
     }
 
     /**
@@ -61,5 +66,14 @@ public class StoreManager {
             inventory.removeStock(purchase[0], purchase[1]);
         }
         return totalPrice;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int assignNewCartID() {
+        numStoreView += 1;
+        return numStoreView;
     }
 }

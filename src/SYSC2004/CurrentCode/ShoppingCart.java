@@ -26,15 +26,6 @@ public class ShoppingCart {
     }
 
     /**
-     * Initialize the ShoppingCart with an existing cart.
-     *
-     * @param shoppingCart Parameter, of type HashMap<Product, Integer></Product,>, to represent the existing cart.
-     */
-    public ShoppingCart(HashMap<Product, Integer> shoppingCart) {
-        this.shoppingCart = shoppingCart;
-    }
-
-    /**
      * Get The current ShoppingCart.
      *
      * @return Return the shoppingCart HashMap.
