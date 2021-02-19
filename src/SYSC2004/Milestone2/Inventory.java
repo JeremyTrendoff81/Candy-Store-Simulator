@@ -13,8 +13,27 @@ import java.util.ArrayList;
  * Class Description: The inventory class will keep track of all the products in the store.
  */
 public class Inventory {
-    private final ArrayList<Product> productList = new ArrayList<>();
-    private final ArrayList<Integer> stockList = new ArrayList<>();
+    private final ArrayList<Product> productList;
+    private final ArrayList<Integer> stockList;
+
+    /**
+     * Initialize the Inventory to be empty.
+     */
+    public Inventory() {
+        productList = new ArrayList<>();
+        stockList = new ArrayList<>();
+    }
+
+    /**
+     * Initialize the Inventory from default values.
+     *
+     * @param productList
+     * @param stockList
+     */
+    public Inventory(ArrayList<Product> productList, ArrayList<Integer> stockList) {
+        this.productList = productList;
+        this.stockList = stockList;
+    }
 
     /**
      *

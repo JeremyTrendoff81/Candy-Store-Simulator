@@ -1,5 +1,6 @@
 package SYSC2004.Milestone2;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -33,6 +34,10 @@ public class StoreView {
      * @return
      */
     private boolean displayUI() {
+        if (id == 0) {
+            System.out.println("\n|--------------------Administrator--------------------|");
+        }
+
         System.out.println("\nType 'help' for a list of commands.");
         System.out.println("Enter a command...");
 
@@ -53,6 +58,7 @@ public class StoreView {
             if (id == 0) {
                 System.out.println("'addtoinventory'      -> Add a product to the inventory");
                 System.out.println("'removefrominventory' -> Remove a product from the inventory");
+                System.out.println("'closestore'          -> Return all users cart items and close the store");
             }
             System.out.print("\n");
             return false;
@@ -92,10 +98,29 @@ public class StoreView {
                     System.out.println(String.format("%-12d %-15s %-15.2f %-8s", manager.getStock(productID, -1),
                             manager.getName(productID, -1), manager.getPrice(productID, -1), "(" + i + ")"));
                 }
-                System.out.print("\nProduct to Add to Cart >>> ");
-                int productToRemove = in.nextInt();
-                System.out.print("Quantity to Add to Cart >>> ");
-                int quantityToRemove = in.nextInt();
+
+                int productToRemove = -1;
+                while (productToRemove == -1) {
+                    try {
+                        System.out.print("\nProduct to Add to Cart >>> ");
+                        productToRemove = in.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("ERROR > INVALID PRODUCT");
+                        in.next();
+                    }
+                }
+
+
+                int quantityToRemove = -1;
+                while (quantityToRemove == -1) {
+                    try {
+                        System.out.print("\nQuantity to Add to Cart >>> ");
+                        quantityToRemove = in.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("ERROR > INVALID PRODUCT QUANTITY TO REMOVE");
+                        in.next();
+                    }
+                }
 
                 int productToRemoveId = manager.getId(productToRemove, -1);
 
@@ -126,10 +151,28 @@ public class StoreView {
                     System.out.println(String.format("%-12d %-15s %-15.2f %-8s", manager.getStock(productID, id),
                             manager.getName(productID, id), manager.getPrice(productID, id), "(" + i + ")"));
                 }
-                System.out.print("\nProduct to Remove from Cart >>> ");
-                int productToRemove = in.nextInt();
-                System.out.print("Quantity to Remove from Cart >>> ");
-                int quantityToRemove = in.nextInt();
+
+                int productToRemove = -1;
+                while (productToRemove == -1) {
+                    try {
+                        System.out.print("\nProduct to Remove from Cart >>> ");
+                        productToRemove = in.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("ERROR > INPUT MISMATCH EXCEPTION > INVALID PRODUCT");
+                        in.next();
+                    }
+                }
+
+                int quantityToRemove = -1;
+                while (quantityToRemove == -1) {
+                    try {
+                        System.out.print("Quantity to Remove from Cart >>> ");
+                        quantityToRemove = in.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("ERROR > INPUT MISMATCH EXCEPTION > INVALID QUANTITY TO REMOVE");
+                        in.next();
+                    }
+                }
 
                 int productToRemoveId = manager.getId(productToRemove, id);
 
@@ -189,14 +232,49 @@ public class StoreView {
             System.out.println("|--------------------The Course Store--------------------|");
             System.out.println("| ADD TO INVENTORY --------------------------------------|\n");
 
-            System.out.print("Product Name >>> ");
-            String newProductName = in.next();
-            System.out.print("Product ID >>> ");
-            int newProductID = in.nextInt();
-            System.out.print("Product Price >>> ");
-            double newProductPrice = in.nextDouble();
-            System.out.print("Quantity to Add >>> ");
-            int quantity = in.nextInt();
+            String newProductName = null;
+            while (newProductName == null) {
+                try {
+                    System.out.print("Product Name >>> ");
+                    newProductName = in.next();
+                } catch (InputMismatchException e) {
+                    System.out.println("ERROR > INPUT MISMATCH EXCEPTION > INVALID PRODUCT NAME");
+                    in.next();
+                }
+            }
+
+            int newProductID = -1;
+            while (newProductID == -1) {
+                try {
+                    System.out.print("Product ID >>> ");
+                    newProductID = in.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("ERROR > INPUT MISMATCH EXCEPTION > INVALID PRODUCT ID");
+                    in.next();
+                }
+            }
+
+            double newProductPrice = -1.00;
+            while (newProductPrice == -1.00) {
+                try {
+                    System.out.print("Product Price >>> ");
+                    newProductPrice = in.nextDouble();
+                } catch (InputMismatchException e) {
+                    System.out.println("ERROR > INPUT MISMATCH EXCEPTION > INVALID PRODUCT PRICE");
+                    in.next();
+                }
+            }
+
+            int quantity = -1;
+            while (quantity == -1) {
+                try {
+                    System.out.print("Quantity to Add >>> ");
+                    quantity = in.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("ERROR > INPUT MISMATCH EXCEPTION > INVALID QUANTITY TO ADD");
+                    in.next();
+                }
+            }
 
             manager.add(new Product(newProductName, newProductID, newProductPrice), quantity, -1);
 
@@ -219,10 +297,28 @@ public class StoreView {
                     System.out.println(String.format("%-12d %-15s %-15.2f %-8s", manager.getStock(productID, -1),
                             manager.getName(productID, -1), manager.getPrice(productID, -1), "(" + i + ")"));
                 }
-                System.out.print("\nProduct to Remove >>> ");
-                int productToRemove = in.nextInt();
-                System.out.print("Quantity to Remove >>> ");
-                int quantityToRemove = in.nextInt();
+
+                int productToRemove = -1;
+                while (productToRemove == -1) {
+                    try {
+                        System.out.print("\nProduct to Remove >>> ");
+                        productToRemove = in.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("ERROR > INPUT MISMATCH EXCEPTION > INVALID PRODUCT");
+                        in.next();
+                    }
+                }
+
+                int quantityToRemove = -1;
+                while (quantityToRemove == -1) {
+                    try {
+                        System.out.print("Quantity to Remove >>> ");
+                        quantityToRemove = in.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("ERROR > INPUT MISMATCH EXCEPTION > INVALID QUANTITY TO REMOVE");
+                        in.next();
+                    }
+                }
 
                 if (!manager.remove(manager.getId(productToRemove, -1), quantityToRemove, -1)) {
                     System.out.println("ERROR > INVALID PRODUCT OR PRODUCT QUANTITY TO REMOVE");
@@ -232,6 +328,10 @@ public class StoreView {
             return false;
 
 
+        } else if ((id == 0) && command.equals("closestore")) {
+            System.out.println("THE STORE IS NOW CLOSED!");
+            System.exit(0);
+            return false;
         } else {
             System.out.println("ERROR > INVALID COMMAND\nPLEASE TRY AGAIN");
 
@@ -248,8 +348,18 @@ public class StoreView {
         StoreManager manager = new StoreManager();
         Scanner in = new Scanner(System.in);
 
-        System.out.print("CHOOSE NUMBER OF USERS >>> ");
-        int activeSV = in.nextInt();
+        boolean isFirstRun = true;
+
+        int activeSV = -1;
+        while (activeSV == -1) {
+            try {
+                System.out.print("CHOOSE NUMBER OF USERS >>> ");
+                activeSV = in.nextInt() + 1;
+            } catch (InputMismatchException e) {
+                System.out.println("ERROR > INPUT MISMATCH EXCEPTION > INVALID NUMBER OF USERS");
+                in.next();
+            }
+        }
 
         ArrayList<StoreView> users = new ArrayList<>();
 
@@ -259,15 +369,33 @@ public class StoreView {
 
         String new_user;
 
+        int choice = 0;
+
         while (activeSV > 0) {
-            System.out.print("NEW USER? (y/n) >>> ");
-            new_user = in.next();
-            if (new_user.equals("y") || new_user.equals("Y")) {
-                users.add(new StoreView(manager, manager.assignNewCartID()));
-                activeSV++;
+            if (!isFirstRun) {
+                System.out.print("NEW USER? (y/n) >>> ");
+                new_user = in.next();
+                if (new_user.equals("y") || new_user.equals("Y")) {
+                    users.add(new StoreView(manager, manager.assignNewCartID()));
+                    activeSV++;
+                } else {
+                    System.out.println("NO NEW USER ADDED");
+                }
             }
-            System.out.print("CHOOSE YOUR STOREVIEW >>> ");
-            int choice = in.nextInt();
+            if (users.size() > 1) {
+                System.out.print("CHOOSE YOUR STOREVIEW ");
+
+                System.out.print("(");
+                System.out.print("Active Users: ");
+                for (StoreView sv : users) {
+                    if (sv != null && users.indexOf(sv) != 0) {
+                        System.out.print("[" + users.indexOf(sv) + "]");
+                    }
+                }
+                System.out.print(")");
+                System.out.print(" >>> ");
+                choice = in.nextInt();
+            }
             if (choice < users.size() && choice >= 0) {
                 if (users.get(choice) != null) {
                     String chooseAnother = "";
@@ -287,6 +415,8 @@ public class StoreView {
                 System.out.printf("MAIN > ERROR > BAD CHOICE\nPLEASE CHOOSE IN RANGE [%d, %d]\n\n", 0,
                         users.size() - 1);
             }
+
+            isFirstRun = false;
         }
         System.out.println("\nALL STOREVIEWS DEACTIVATED");
     }

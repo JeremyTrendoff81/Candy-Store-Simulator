@@ -17,9 +17,9 @@ import java.util.ArrayList;
 public class StoreManager {
 
     /**
-     *
+     * The inventory object that the StoreManager manages.
      */
-    private final Inventory inventory = new Inventory();     // The inventory object that the StoreManager manages
+    private final Inventory inventory;
 
     /**
      *
@@ -30,6 +30,25 @@ public class StoreManager {
      *
      */
     private int numStoreView = -1;
+
+    /**
+     * Initialize the StoreManager.
+     */
+    public StoreManager() {
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("Smarties", 101, 1.75));
+        products.add(new Product("KitKat", 102, 2.25));
+        products.add(new Product("Snickers", 103, 2.50));
+        products.add(new Product("Chunky Bar", 104, 3.00));
+
+        ArrayList<Integer> stock = new ArrayList<>();
+        stock.add(100);
+        stock.add(75);
+        stock.add(50);
+        stock.add(25);
+
+        inventory = new Inventory(products, stock);
+    }
 
     /**
      *
