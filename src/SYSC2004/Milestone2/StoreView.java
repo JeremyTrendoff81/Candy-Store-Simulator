@@ -395,7 +395,17 @@ public class StoreView {
                 }
                 System.out.print(")");
                 System.out.print(" >>> ");
-                choice = in.nextInt();
+
+                choice = -1;
+                while (choice == -1) {
+                    try {
+                        choice = in.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("ERROR > INPUT MISMATCH EXCEPTION > INVALID STOREVIEW");
+                        in.next();
+                        System.out.print("\nTRY AGAIN >>> ");
+                    }
+                }
             }
             if (choice < users.size() && choice >= 0) {
                 if (users.get(choice) != null) {
