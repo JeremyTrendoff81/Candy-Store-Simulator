@@ -386,7 +386,8 @@ public class StoreView {
                 System.out.print("CHOOSE YOUR STOREVIEW ");
 
                 System.out.print("(");
-                System.out.print("Active Users: ");
+                System.out.print("Administrator: [0] || Active Users: ");
+
                 for (StoreView sv : users) {
                     if (sv != null && users.indexOf(sv) != 0) {
                         System.out.print("[" + users.indexOf(sv) + "]");
