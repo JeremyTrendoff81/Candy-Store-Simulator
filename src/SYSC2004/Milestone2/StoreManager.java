@@ -22,12 +22,12 @@ public class StoreManager {
     private final Inventory inventory;
 
     /**
-     *
+     * The users individual ShoppingCart objects.
      */
     private final ArrayList<ShoppingCart> carts = new ArrayList<ShoppingCart>();
 
     /**
-     *
+     * The number of StoreView instances related to this StoreManager.
      */
     private int numStoreView = -1;
 

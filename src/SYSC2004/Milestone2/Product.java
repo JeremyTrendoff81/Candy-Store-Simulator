@@ -1,29 +1,29 @@
 package SYSC2004.Milestone2;
 
 /**
- * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
+ * The product class will store information about the items being sold by the store.
  *
- * Date of Completion: Jan 25, 2021
- *
- * Class Description: The product class will store information about the items being sold by the store.
+ * @author Jeremy Trendoff - 101160306, Evan Smedley - 101148695
+ * @version 2.0
+ * @since Feb 23, 2021
  */
 
 public class Product {
 
     /**
-     *
+     * The name of the product
      */
-    private final String name;  // The name of the product
+    private final String name;
 
     /**
-     *
+     * The id of the product
      */
-    private final int id;    // The id of the product
+    private final int id;
 
     /**
-     *
+     * The price of the product
      */
-    private final double price; // The price of the product
+    private final double price;
 
     /**
      * Constructor to initialize a product.
@@ -41,7 +41,7 @@ public class Product {
     /**
      * Get the name of the product
      *
-     * @return The name of the product.
+     * @return The name of the product as a String.
      */
     public String getName() {
         return name;
@@ -50,7 +50,7 @@ public class Product {
     /**
      * Get the id of the product.
      *
-     * @return Return the id of the product.
+     * @return Return the id of the product as an int.
      */
     public int getID() {
         return id;
@@ -59,7 +59,7 @@ public class Product {
     /**
      * Get the price of the product.
      *
-     * @return Return the price of the product.
+     * @return Return the price of the product as a double.
      */
     public double getPrice() {
         return price;

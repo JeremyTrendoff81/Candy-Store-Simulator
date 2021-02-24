@@ -5,24 +5,30 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 /**
- * Authors: Evan Smedley - 101148695, Jeremy Trendoff - 101160306
+ * The StoreView class will display the User Interface of the store.
+ *
+ * @author Evan Smedley - 101148695, Jeremy Trendoff - 101160306
+ * @version 1.0
+ * @since Feb 23, 2021
  */
+
 public class StoreView {
 
     /**
-     *
+     * The store's StoreManager.
      */
     private final StoreManager manager;
 
     /**
-     *
+     * The id of the user's StoreView instance.
      */
     private final int id;
 
     /**
+     * Constructor for StoreView. Initialize the StoreView with specified values.
      *
-     * @param manager
-     * @param id
+     * @param manager A StoreManager object that represents the StoreViews StoreManager.
+     * @param id    An int value representing the id of the user's StoreView instance.
      */
     private StoreView(StoreManager manager, int id) {
         this.manager = manager;
@@ -30,8 +36,9 @@ public class StoreView {
     }
 
     /**
+     * Displays the User Interface.
      *
-     * @return
+     * @return  True if the user decides to quit or checkout. False otherwise.
      */
     private boolean displayUI() {
         if (id == 0) {

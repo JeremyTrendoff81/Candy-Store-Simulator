@@ -3,21 +3,22 @@ package SYSC2004.Milestone2;
 import java.util.ArrayList;
 
 /**
- * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
+ * The inventory class will keep track of all the products in the store.
  *
- * Primary Class Developer: Jeremy Trendoff - 101160306
- * Contributor: Evan Smedley - 101148695
+ * @author Jeremy Trendoff - 101160306, Evan Smedley - 101148695
  *
- * Date of Completion: Feb 12, 2021
+ * @Primary_Class_Developer: Jeremy Trendoff - 101160306
+ * @Contributor: Evan Smedley - 101148695
  *
- * Class Description: The inventory class will keep track of all the products in the store.
+ * @version 4.0
+ * @since Feb 23, 2021
  */
 public class Inventory {
     private final ArrayList<Product> productList;
     private final ArrayList<Integer> stockList;
 
     /**
-     * Initialize the Inventory to be empty.
+     * Constructor for Inventory. Initialize the Inventory to be empty.
      */
     public Inventory() {
         productList = new ArrayList<>();
@@ -25,10 +26,10 @@ public class Inventory {
     }
 
     /**
-     * Initialize the Inventory from default values.
+     * Constructor for Inventory. Initialize the Inventory from default values.
      *
-     * @param productList
-     * @param stockList
+     * @param productList An ArrayList<Product></Product> to represent a list of products.
+     * @param stockList   An ArrayList<Integer></Integer> to represent each products quantity.
      */
     public Inventory(ArrayList<Product> productList, ArrayList<Integer> stockList) {
         this.productList = productList;
@@ -36,9 +37,10 @@ public class Inventory {
     }
 
     /**
+     *  Check if a product is in the inventory.
      *
-     * @param id
-     * @return
+     * @param id    An int value representing the ID of the product.
+     * @return      An int value representing the index of the product and its quantity in the inventories ArrayLists.
      */
     private int haveProduct(int id) {
        for (int i = 0; i < productList.size(); i++) {
@@ -50,9 +52,10 @@ public class Inventory {
     }
 
     /**
+     * Add a specified quantity of a product to the inventory.
      *
-     * @param product
-     * @param quantity
+     * @param product   A Product object to represent the product to be added.
+     * @param quantity  An int value to represent the quantity of product to be added.
      */
     public void addStock(Product product, int quantity) {
         int i = haveProduct(product.getID());
@@ -66,10 +69,11 @@ public class Inventory {
     }
 
     /**
+     * Remove a given amount of stock of a product.
      *
-     * @param id
-     * @param quantity
-     * @return
+     * @param id    An int value representing the ID of the product.
+     * @param quantity  An int value to represent the quantity of product to be removed.
+     * @return  True if the products were removed properly, otherwise false.
      */
     public boolean removeStock(int id, int quantity) {
         int i = haveProduct(id);     // The index of the product and its related quantity
@@ -88,9 +92,10 @@ public class Inventory {
     }
 
     /**
+     * Get the product ID for a given index in the inventories productList.
      *
-     * @param index
-     * @return
+     * @param index An int to represent the index of the product.
+     * @return  An int value representing the product ID.
      */
     public int getProductID(int index) {
         return productList.get(index).getID();
@@ -129,9 +134,10 @@ public class Inventory {
     }
 
     /**
+     * Get the amount of stock for a give product ID.
      *
-     * @param id
-     * @return
+     * @param id    An int value representing the product ID.
+     * @return  An int value representing the quantity of the product.
      */
     public int getStock(int id) {
         int i = haveProduct(id);
@@ -143,8 +149,9 @@ public class Inventory {
     }
 
     /**
+     * Get the number of products in the inventory.
      *
-     * @return
+     * @return  An int value representing the number of products in the inventory.
      */
     public int getNumProducts() {
         return productList.size();
