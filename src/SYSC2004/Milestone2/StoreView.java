@@ -58,14 +58,15 @@ public class StoreView {
             System.out.println("'removefromcart'      -> Remove a product from your cart");
             System.out.println("'cart'                -> Review the contents of your cart");
             System.out.println("'checkout'            -> Purchase all items in your shopping cart and exit");
-            System.out.println("'quit'                -> Return all items in your shopping cart and exit");
 
             // The following commands are only available to the administrator (StoreView instance with id = 0).
             // They are for adding and removing from the store inventory.
             if (id == 0) {
                 System.out.println("'addtoinventory'      -> Add a product to the inventory");
                 System.out.println("'removefrominventory' -> Remove a product from the inventory");
-                System.out.println("'closestore'          -> Return all users cart items and close the store");
+                System.out.println("'closestore'          -> Close the store");
+            } else {
+                System.out.println("'quit'                -> Return all items in your shopping cart and exit");
             }
             System.out.print("\n");
             return false;
@@ -81,7 +82,7 @@ public class StoreView {
                 System.out.println("\nNo products available");
             }
             for (int i = 0; i < numProducts; i++) {
-                int productID = manager.getId(i, -1);
+                int productID = manager.getID(i, -1);
                 System.out.println(String.format("%-12d %-15s %-15.2f", manager.getStock(productID, -1),
                         manager.getName(productID, -1), manager.getPrice(productID, -1)));
             }
@@ -101,7 +102,7 @@ public class StoreView {
                 System.out.println("\nNo products available");
             } else {
                 for (int i = 0; i < numProducts; i++) {
-                    int productID = manager.getId(i, -1);
+                    int productID = manager.getID(i, -1);
                     System.out.println(String.format("%-12d %-15s %-15.2f %-8s", manager.getStock(productID, -1),
                             manager.getName(productID, -1), manager.getPrice(productID, -1), "(" + i + ")"));
                 }
@@ -129,12 +130,12 @@ public class StoreView {
                     }
                 }
 
-                int productToRemoveId = manager.getId(productToRemove, -1);
+                int productToRemoveId = manager.getID(productToRemove, -1);
 
                 if (manager.getStock(productToRemoveId, -1) >= quantityToRemove) {
                     manager.add(new Product(manager.getName(productToRemoveId, -1), productToRemoveId,
                             manager.getPrice(productToRemoveId, -1)), quantityToRemove, id);
-                    manager.remove(manager.getId(productToRemove, -1), quantityToRemove, -1);
+                    manager.remove(manager.getID(productToRemove, -1), quantityToRemove, -1);
                 } else {
                     System.out.println("ERROR > INVALID PRODUCT OR PRODUCT QUANTITY TO REMOVE");
                 }
@@ -154,7 +155,7 @@ public class StoreView {
                 System.out.println("\nYour cart is empty");
             } else {
                 for (int i = 0; i < numProducts; i++) {
-                    int productID = manager.getId(i, id);
+                    int productID = manager.getID(i, id);
                     System.out.println(String.format("%-12d %-15s %-15.2f %-8s", manager.getStock(productID, id),
                             manager.getName(productID, id), manager.getPrice(productID, id), "(" + i + ")"));
                 }
@@ -181,12 +182,12 @@ public class StoreView {
                     }
                 }
 
-                int productToRemoveId = manager.getId(productToRemove, id);
+                int productToRemoveId = manager.getID(productToRemove, id);
 
                 if (manager.getStock(productToRemoveId, id) >= quantityToRemove) {
                     manager.add(new Product(manager.getName(productToRemoveId, id), productToRemoveId,
                             manager.getPrice(productToRemoveId, id)), quantityToRemove, -1);
-                    manager.remove(manager.getId(productToRemove, id), quantityToRemove, id);
+                    manager.remove(manager.getID(productToRemove, id), quantityToRemove, id);
                 } else {
                     System.out.println("ERROR > INVALID PRODUCT OR PRODUCT QUANTITY TO REMOVE");
                 }
@@ -206,7 +207,7 @@ public class StoreView {
                 System.out.println("\nYour cart is empty");
             }
             for (int i = 0; i < numProducts; i++) {
-                int productID = manager.getId(i, id);
+                int productID = manager.getID(i, id);
                 System.out.println(String.format("%-12d %-15s %-15.2f", manager.getStock(productID, id),
                         manager.getName(productID, id), manager.getPrice(productID, id)));
             }
@@ -221,7 +222,7 @@ public class StoreView {
             double totalPrice = 0.0;
             int currentProductId;
             for (int i = 0; i < manager.getNumProducts(id); i++) {
-                currentProductId = manager.getId(i, id);
+                currentProductId = manager.getID(i, id);
                 totalPrice += manager.getPrice(currentProductId, id) * manager.getStock(currentProductId, id);
             }
 
@@ -231,7 +232,14 @@ public class StoreView {
             return true;
 
 
-        } else if (command.equals("quit")) {
+        } else if ((command.equals("quit")) && (id != 0)) {
+            int productID;
+            for (int i = 0; i < manager.getNumProducts(id); i++) {
+                productID = manager.getID(i, id);
+                manager.add(new Product(manager.getName(productID, id), productID, manager.getPrice(productID, id)),
+                        manager.getStock(productID, id), -1);
+                manager.remove(productID, manager.getStock(productID, id), id);
+            }
             return true;
 
 
@@ -300,7 +308,7 @@ public class StoreView {
                 System.out.println("\nNo products available");
             } else {
                 for (int i = 0; i < numProducts; i++) {
-                    int productID = manager.getId(i, -1);
+                    int productID = manager.getID(i, -1);
                     System.out.println(String.format("%-12d %-15s %-15.2f %-8s", manager.getStock(productID, -1),
                             manager.getName(productID, -1), manager.getPrice(productID, -1), "(" + i + ")"));
                 }
@@ -327,7 +335,7 @@ public class StoreView {
                     }
                 }
 
-                if (!manager.remove(manager.getId(productToRemove, -1), quantityToRemove, -1)) {
+                if (!manager.remove(manager.getID(productToRemove, -1), quantityToRemove, -1)) {
                     System.out.println("ERROR > INVALID PRODUCT OR PRODUCT QUANTITY TO REMOVE");
                 }
             }

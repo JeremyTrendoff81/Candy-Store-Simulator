@@ -66,7 +66,7 @@ public class StoreManager {
      * @param location
      * @return
      */
-    public int getId(int index, int location) {
+    public int getID(int index, int location) {
         if (location == -1) {
             return inventory.getProductID(index);
         } else if ((location >= 0) && (location < carts.size())) {
