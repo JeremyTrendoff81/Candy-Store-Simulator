@@ -13,4 +13,11 @@ package SYSC2004.Milestone2;
  */
 
 public class ShoppingCart extends Inventory {
+
+    /**
+     *
+     */
+    public ShoppingCart() {
+        super();
+    }
 }
