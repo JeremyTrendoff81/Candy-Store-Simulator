@@ -20,4 +20,39 @@ public class ShoppingCart extends Inventory {
     public ShoppingCart() {
         super();
     }
+
+    @Override
+    public void addStock(Product product, int quantity) {
+        super.addStock(product, quantity);
+    }
+
+    @Override
+    public boolean removeStock(int id, int quantity) {
+        return super.removeStock(id, quantity);
+    }
+
+    @Override
+    public int getProductID(int index) {
+        return super.getProductID(index);
+    }
+
+    @Override
+    public String getProductName(int id) {
+        return super.getProductName(id);
+    }
+
+    @Override
+    public double getProductPrice(int id) {
+        return super.getProductPrice(id);
+    }
+
+    @Override
+    public int getStock(int id) {
+        return super.getStock(id);
+    }
+
+    @Override
+    public int getNumProducts() {
+        return super.getNumProducts();
+    }
 }
