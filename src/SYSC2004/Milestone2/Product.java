@@ -13,17 +13,17 @@ public class Product {
     /**
      * The name of the product
      */
-    private final String name;
+    private String name;
 
     /**
      * The id of the product
      */
-    private final int id;
+    private int id;
 
     /**
      * The price of the product
      */
-    private final double price;
+    private double price;
 
     /**
      * Constructor to initialize a product.

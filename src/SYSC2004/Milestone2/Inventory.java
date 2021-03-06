@@ -7,15 +7,12 @@ import java.util.ArrayList;
  *
  * @author Jeremy Trendoff - 101160306, Evan Smedley - 101148695
  *
- * @Primary_Class_Developer: Jeremy Trendoff - 101160306
- * @Contributor: Evan Smedley - 101148695
- *
  * @version 4.0
  * @since Feb 23, 2021
  */
 public class Inventory {
-    private final ArrayList<Product> productList;
-    private final ArrayList<Integer> stockList;
+    private ArrayList<Product> productList;
+    private ArrayList<Integer> stockList;
 
     /**
      * Constructor for Inventory. Initialize the Inventory to be empty.

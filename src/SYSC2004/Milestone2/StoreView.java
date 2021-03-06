@@ -17,7 +17,7 @@ public class StoreView {
     /**
      * The store's StoreManager.
      */
-    private final StoreManager manager;
+    private StoreManager manager;
 
     /**
      * The id of the user's StoreView instance.
