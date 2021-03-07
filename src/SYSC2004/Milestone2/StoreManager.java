@@ -26,7 +26,7 @@ public class StoreManager {
     /**
      * The number of StoreView instances related to this StoreManager.
      */
-    private static int numStoreView = -1;
+    private static int numStoreView = 0;
 
     /**
      * Initialize the StoreManager.
@@ -58,9 +58,8 @@ public class StoreManager {
      * @return
      */
     public int assignNewCartID() {
-        numStoreView += 1;
         carts.add(new ShoppingCart());
-        return numStoreView;
+        return numStoreView++;
     }
 
     /**
@@ -127,6 +126,11 @@ public class StoreManager {
         }
     }
 
+    /**
+     *
+     * @param location
+     * @return
+     */
     public int getNumProducts(int location) {
         if (location == -1) {
             return inventory.getNumProducts();

@@ -34,7 +34,7 @@ public class Inventory {
     }
 
     /**
-     *  Check if a product is in the inventory.
+     * Check if a product is in the inventory.
      *
      * @param id    An int value representing the ID of the product.
      * @return      An int value representing the index of the product and its quantity in the inventories ArrayLists.
@@ -52,7 +52,7 @@ public class Inventory {
      * Add a specified quantity of a product to the inventory.
      *
      * @param product   A Product object to represent the product to be added.
-     * @param quantity  An int value to represent the quantity of product to be added.
+     * @param quantity  An int value to represent the quantity of product to be added (must be positive).
      */
     public void addStock(Product product, int quantity) {
         int i = haveProduct(product.getID());
