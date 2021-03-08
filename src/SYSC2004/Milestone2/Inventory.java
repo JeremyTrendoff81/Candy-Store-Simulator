@@ -18,8 +18,8 @@ public class Inventory {
      * Constructor for Inventory. Initialize the Inventory to be empty.
      */
     public Inventory() {
-        productList = new ArrayList<>();
-        stockList = new ArrayList<>();
+        this.productList = new ArrayList<>();
+        this.stockList = new ArrayList<>();
     }
 
     /**
@@ -40,8 +40,8 @@ public class Inventory {
      * @return      An int value representing the index of the product and its quantity in the inventories ArrayLists.
      */
     private int haveProduct(int id) {
-       for (int i = 0; i < productList.size(); i++) {
-           if (productList.get(i).getID() == id) {
+       for (int i = 0; i < this.productList.size(); i++) {
+           if (this.productList.get(i).getID() == id) {
                return i;
            }
        }
@@ -58,10 +58,10 @@ public class Inventory {
         int i = haveProduct(product.getID());
 
         if (i != -1) {
-            stockList.set(i, stockList.get(i) + quantity);
+            this.stockList.set(i, this.stockList.get(i) + quantity);
         } else {
-            productList.add(product);
-            stockList.add(quantity);
+            this.productList.add(product);
+            this.stockList.add(quantity);
         }
     }
 
@@ -75,12 +75,12 @@ public class Inventory {
     public boolean removeStock(int id, int quantity) {
         int i = haveProduct(id);     // The index of the product and its related quantity
 
-        if ((i != -1) && (stockList.get(i) >= quantity)) {
-            if (stockList.get(i) == quantity) {
-                productList.remove(i);
-                stockList.remove(i);
+        if ((i != -1) && (this.stockList.get(i) >= quantity)) {
+            if (this.stockList.get(i) == quantity) {
+                this.productList.remove(i);
+                this.stockList.remove(i);
             } else {
-                stockList.set(i, stockList.get(i) - quantity);
+                this.stockList.set(i, this.stockList.get(i) - quantity);
             }
             return true;
         } else {
@@ -95,7 +95,7 @@ public class Inventory {
      * @return  An int value representing the product ID.
      */
     public int getProductID(int index) {
-        return productList.get(index).getID();
+        return this.productList.get(index).getID();
     }
 
     /**
@@ -108,7 +108,7 @@ public class Inventory {
         int i = haveProduct(id);
 
         if (i != -1) {
-            return productList.get(i).getName();
+            return this.productList.get(i).getName();
         } else {
             return null;
         }
@@ -124,7 +124,7 @@ public class Inventory {
         int i = haveProduct(id);
 
         if (i != -1) {
-            return productList.get(i).getPrice();
+            return this.productList.get(i).getPrice();
         } else {
             return -1.0;
         }
@@ -140,7 +140,7 @@ public class Inventory {
         int i = haveProduct(id);
 
         if (i != -1) {
-            return stockList.get(i);
+            return this.stockList.get(i);
         }
         return -1;
     }
@@ -151,6 +151,6 @@ public class Inventory {
      * @return  An int value representing the number of products in the inventory.
      */
     public int getNumProducts() {
-        return productList.size();
+        return this.productList.size();
     }
 }

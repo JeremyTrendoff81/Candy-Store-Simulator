@@ -44,7 +44,7 @@ public class Product {
      * @return The name of the product as a String.
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -53,7 +53,7 @@ public class Product {
      * @return Return the id of the product as an int.
      */
     public int getID() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -62,6 +62,6 @@ public class Product {
      * @return Return the price of the product as a double.
      */
     public double getPrice() {
-        return price;
+        return this.price;
     }
 }

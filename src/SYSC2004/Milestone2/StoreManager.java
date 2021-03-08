@@ -21,7 +21,7 @@ public class StoreManager {
     /**
      * The users individual ShoppingCart objects.
      */
-    private ArrayList<ShoppingCart> carts = new ArrayList<ShoppingCart>();
+    private ArrayList<ShoppingCart> carts;
 
     /**
      * The number of StoreView instances related to this StoreManager.
@@ -50,7 +50,8 @@ public class StoreManager {
         stock.add(132);
         stock.add(322);
 
-        inventory = new Inventory(products, stock);
+        this.inventory = new Inventory(products, stock);
+        this.carts = new ArrayList<>();
     }
 
     /**
@@ -58,7 +59,7 @@ public class StoreManager {
      * @return
      */
     public int assignNewCartID() {
-        carts.add(new ShoppingCart());
+        this.carts.add(new ShoppingCart());
         return numStoreView++;
     }
 
@@ -70,9 +71,9 @@ public class StoreManager {
      */
     public int getID(int index, int location) {
         if (location == -1) {
-            return inventory.getProductID(index);
+            return this.inventory.getProductID(index);
         } else if ((location >= 0) && (location < carts.size())) {
-            return carts.get(location).getProductID(index);
+            return this.carts.get(location).getProductID(index);
         } else {
             return -1;
         }
@@ -86,9 +87,9 @@ public class StoreManager {
      */
     public String getName(int id, int location) {
         if (location == -1) {
-            return inventory.getProductName(id);
+            return this.inventory.getProductName(id);
         } else if ((location >= 0) && (location < carts.size())) {
-            return carts.get(location).getProductName(id);
+            return this.carts.get(location).getProductName(id);
         } else {
             return null;
         }
@@ -102,9 +103,9 @@ public class StoreManager {
      */
     public double getPrice(int id, int location) {
         if (location == -1) {
-            return inventory.getProductPrice(id);
+            return this.inventory.getProductPrice(id);
         } else if ((location >= 0) && (location < carts.size())) {
-            return carts.get(location).getProductPrice(id);
+            return this.carts.get(location).getProductPrice(id);
         } else {
             return -1.0;
         }
@@ -118,9 +119,9 @@ public class StoreManager {
      */
     public int getStock(int id, int location) {
         if (location == -1) {
-            return inventory.getStock(id);
+            return this.inventory.getStock(id);
         } else if ((location >= 0) && (location < carts.size())) {
-            return carts.get(location).getStock(id);
+            return this.carts.get(location).getStock(id);
         } else {
             return -1;
         }
@@ -133,9 +134,9 @@ public class StoreManager {
      */
     public int getNumProducts(int location) {
         if (location == -1) {
-            return inventory.getNumProducts();
+            return this.inventory.getNumProducts();
         } else if ((location >= 0) && (location < carts.size())) {
-            return carts.get(location).getNumProducts();
+            return this.carts.get(location).getNumProducts();
         } else {
             return -1;
         }
@@ -149,9 +150,9 @@ public class StoreManager {
      */
     public void add(Product product, int quantity, int location) {
         if (location == -1) {
-            inventory.addStock(product, quantity);
+            this.inventory.addStock(product, quantity);
         } else if ((location >= 0) && (location < carts.size())) {
-            carts.get(location).addStock(product, quantity);
+            this.carts.get(location).addStock(product, quantity);
         } else {
             System.out.println("Invalid Cart/Inventory to access");
         }
@@ -166,9 +167,9 @@ public class StoreManager {
      */
     public boolean remove(int id, int quantity, int location) {
         if (location == -1) {
-            return inventory.removeStock(id, quantity);
+            return this.inventory.removeStock(id, quantity);
         } else if ((location >= 0) && (location < carts.size())) {
-            return carts.get(location).removeStock(id, quantity);
+            return this.carts.get(location).removeStock(id, quantity);
         } else {
             return false;
         }
