@@ -362,8 +362,9 @@ public class StoreView {
 
 
     /**
+     * The main method
      *
-     * @param args
+     * @param args String[], contains arguments passed from the command line.
      */
     public static void main(String[] args) {
         StoreManager manager = new StoreManager();
