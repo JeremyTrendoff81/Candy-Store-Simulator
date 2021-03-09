@@ -3,14 +3,13 @@ package SYSC2004.Milestone2;
 import java.util.ArrayList;
 
 /**
- * Authors: Jeremy Trendoff - 101160306, Evan Smedley - 101148695
- *
- * Date of Completion: Feb 12, 2021
- *
- * Class Description: The StoreManager manages the Inventory, ShoppingCarts and provides
+ * The StoreManager manages the Inventory, ShoppingCarts and provides
  * information to the StoreView class.
+ *
+ * @author Jeremy Trendoff - 101160306, Evan Smedley - 101148695
+ * @version 2.0
+ * @since Feb 12, 2021
  */
-
 public class StoreManager {
 
     /**
@@ -55,8 +54,9 @@ public class StoreManager {
     }
 
     /**
+     * Provides a new cart id for a StoreView instance and creates a corresponding ShoppingCart
      *
-     * @return
+     * @return int, number of StoreView instances (used as an id for a storeview)
      */
     public int assignNewCartID() {
         this.carts.add(new ShoppingCart());
@@ -64,10 +64,11 @@ public class StoreManager {
     }
 
     /**
+     * Get the id of the product at index 'index', from either a ShoppingCart or the Inventory
      *
-     * @param index
-     * @param location
-     * @return
+     * @param index int, the index of the product id to return
+     * @param location int, specifies whether to access a cart or the inventory
+     * @return int, the id of the product
      */
     public int getID(int index, int location) {
         if (location == -1) {
@@ -80,10 +81,11 @@ public class StoreManager {
     }
 
     /**
+     * Get the name of the product with the id 'id' from either a ShoppingCart or the Inventory
      *
-     * @param id
-     * @param location
-     * @return
+     * @param id int, the id of the product whose name is being accessed
+     * @param location int, specifies whether to access a cart or the inventory
+     * @return String, the name of the product
      */
     public String getName(int id, int location) {
         if (location == -1) {
@@ -96,10 +98,11 @@ public class StoreManager {
     }
 
     /**
+     * Get the price of the product with the id 'id' from either a ShoppingCart or the Inventory
      *
-     * @param id
-     * @param location
-     * @return
+     * @param id int, the id of the product whose price is being accessed
+     * @param location int, specifies whether to access a cart or the inventory
+     * @return double, the price of the product
      */
     public double getPrice(int id, int location) {
         if (location == -1) {
@@ -112,10 +115,11 @@ public class StoreManager {
     }
 
     /**
+     * Get the stock of the product with the id 'id' from either a ShoppingCart or the Inventory
      *
-     * @param id
-     * @param location
-     * @return
+     * @param id int, the id of the product whose stock is being accessed
+     * @param location int, specifies whether to access a cart or the inventory
+     * @return int, the stock of the product
      */
     public int getStock(int id, int location) {
         if (location == -1) {
@@ -128,9 +132,10 @@ public class StoreManager {
     }
 
     /**
+     * Get the number of different products in either the Inventory or a ShoppingCart
      *
-     * @param location
-     * @return
+     * @param location int, specifies whether to access a cart or the inventory
+     * @return int, the number of different products
      */
     public int getNumProducts(int location) {
         if (location == -1) {
@@ -143,10 +148,11 @@ public class StoreManager {
     }
 
     /**
+     * Add a product to either the Inventory or a ShoppingCart
      *
-     * @param product
-     * @param quantity
-     * @param location
+     * @param product Product, the product to be added
+     * @param quantity int, the quantity of the product to be added
+     * @param location int, specifies whether to access a cart or the inventory
      */
     public void add(Product product, int quantity, int location) {
         if (location == -1) {
@@ -159,11 +165,12 @@ public class StoreManager {
     }
 
     /**
+     * Remove a product from either the Inventory or a ShoppingCart
      *
-     * @param id
-     * @param quantity
-     * @param location
-     * @return
+     * @param id int, the id of the product to be removed
+     * @param quantity int, the quantity of the product to be removed
+     * @param location int, specifies whether to access a cart or the inventory
+     * @return boolean, true for a successful removal, false otherwise
      */
     public boolean remove(int id, int quantity, int location) {
         if (location == -1) {

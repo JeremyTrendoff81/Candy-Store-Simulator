@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * The inventory class will keep track of all the products in the store.
  *
  * @author Jeremy Trendoff - 101160306, Evan Smedley - 101148695
- *
  * @version 4.0
  * @since Feb 23, 2021
  */
