@@ -17,8 +17,7 @@ public class Inventory {
      * Constructor for Inventory. Initialize the Inventory to be empty.
      */
     public Inventory() {
-        this.productList = new ArrayList<>();
-        this.stockList = new ArrayList<>();
+        this(new ArrayList<>(), new ArrayList<>());
     }
 
     /**
