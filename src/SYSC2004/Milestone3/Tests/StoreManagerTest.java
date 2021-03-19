@@ -164,6 +164,7 @@ class StoreManagerTest {
 
         sm.add(new Product("SYSC2004", 101, 100.00), 2, -1);
         assertEquals(78, sm.getStock(101, -1), "add does add to the existing stock of a product correctly");
+        sm.remove(101, 2, -1);
     }
 
     @Test
