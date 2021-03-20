@@ -84,7 +84,7 @@ class InventoryTest {
                 "removeStock did not remove a product entirely when it had 0 stock, removeStock failed");
         assertTrue(success,"removeStock did not return the proper value for a successful remove request, " +
                 "removeStock failed");
-        init(); // This is necessary, this test changesthe order of the product list which messes up testGetProductID
+        init(); // This is necessary, this test changes the order of the product list which messes up testGetProductID
     }
 
     @Test
