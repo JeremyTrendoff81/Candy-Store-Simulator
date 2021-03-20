@@ -67,7 +67,7 @@ public class Inventory {
      * Remove a given amount of stock of a product.
      *
      * @param id    An int value representing the ID of the product.
-     * @param quantity  An int value to represent the quantity of product to be removed.
+     * @param quantity  An int value to represent the quantity of product to be removed (must be positive).
      * @return  True if the products were removed properly, otherwise false.
      */
     public boolean removeStock(int id, int quantity) {

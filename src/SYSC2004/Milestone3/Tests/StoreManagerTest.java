@@ -8,7 +8,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for StoreManager
+ * J-unit test for StoreManager
+ * @author Evan Smedley
  */
 class StoreManagerTest {
 
@@ -18,7 +19,7 @@ class StoreManagerTest {
     private static StoreManager sm;
 
     @BeforeAll
-    public static void initializeStoreManager() {
+    public static void init() {
         sm = new StoreManager();
         sm.assignNewCartID();
         sm.assignNewCartID();
