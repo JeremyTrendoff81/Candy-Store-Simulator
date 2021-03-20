@@ -111,11 +111,12 @@ class InventoryTest {
 
     @Test
     public void testGetProductPrice() {
-        assertEquals(2.0, inventory.getProductPrice(2),
+        assertEquals(2.0, inventory.getProductPrice(2), 0.01,
                 "getProductPrice does not get the correct price, getProductPrice failed");
 
-        assertEquals(-1.0, inventory.getProductPrice(8), "getProductPrice does not handle an id " +
-                "parameter that does not exist in product list correctly, getProductPrice failed");
+        assertEquals(-1.0, inventory.getProductPrice(8), 0.01,
+                "getProductPrice does not handle an id parameter that does not exist in product list " +
+                        "correctly, getProductPrice failed");
     }
 
     @Test
