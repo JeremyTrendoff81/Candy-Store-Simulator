@@ -1,4 +1,4 @@
-package SYSC2004.Milestone3.Tests;
+package SYSC2004.Milestone3.storetest;
 
 import SYSC2004.Milestone3.Store.Inventory;
 import SYSC2004.Milestone3.Store.Product;
@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * J-unit test for Inventory
- * @author Jeremy Trendoff
+ * @author Jeremy Trendoff - 101160306
  */
 class InventoryTest {
 
@@ -20,6 +20,9 @@ class InventoryTest {
      */
     private static Inventory inventory;
 
+    /**
+     * Initializes an Inventory object for testing.
+     */
     @BeforeAll
     public static void init() {
         ArrayList<Product> products = new ArrayList<>();
@@ -40,6 +43,9 @@ class InventoryTest {
         inventory = new Inventory(products, stock);
     }
 
+    /**
+     * Tests Inventory's addStock() method.
+     */
     @Test
     public void testAddStock() {
         inventory.addStock(new Product("test1", 1, 1.00), 5);
@@ -58,6 +64,9 @@ class InventoryTest {
         inventory.removeStock(5, 5); // Undo what was done in this test so it doesn't affect the other tests
     }
 
+    /**
+     * Tests Inventory's removeStock() method.
+     */
     @Test
     public void testRemoveStock() {
         boolean success = inventory.removeStock(5, 5);
@@ -87,6 +96,9 @@ class InventoryTest {
         init(); // This is necessary, this test changes the order of the product list which messes up testGetProductID
     }
 
+    /**
+     * Tests Inventory's getProductID() method.
+     */
     @Test
     public void testGetProductID() {
         assertEquals(2, inventory.getProductID(1),"getProductID does not get the correct id, " +
@@ -100,6 +112,9 @@ class InventoryTest {
                         "getProductID failed");
     }
 
+    /**
+     * Tests Inventory's getProductName() method.
+     */
     @Test
     public void testGetProductName() {
         assertEquals("test2", inventory.getProductName(2),
@@ -109,6 +124,9 @@ class InventoryTest {
                 "does not exist in product list correctly, getProductName failed");
     }
 
+    /**
+     * Tests Inventory's getProductPrice() method.
+     */
     @Test
     public void testGetProductPrice() {
         assertEquals(2.0, inventory.getProductPrice(2), 0.01,
@@ -119,6 +137,9 @@ class InventoryTest {
                         "correctly, getProductPrice failed");
     }
 
+    /**
+     * Tests Inventory's getStock() method.
+     */
     @Test
     public void testGetStock() {
         assertEquals(20, inventory.getStock(2),
@@ -128,6 +149,9 @@ class InventoryTest {
                 "parameter that does not exist in product list correctly, getStock failed");
     }
 
+    /**
+     * Tests Inventory's getNumProducts() method.
+     */
     @Test
     public void testGetNumProducts() {
         assertEquals(4, inventory.getNumProducts(),

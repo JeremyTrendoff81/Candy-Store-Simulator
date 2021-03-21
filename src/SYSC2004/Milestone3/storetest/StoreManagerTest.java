@@ -1,4 +1,4 @@
-package SYSC2004.Milestone3.Tests;
+package SYSC2004.Milestone3.storetest;
 
 import SYSC2004.Milestone3.Store.Product;
 import SYSC2004.Milestone3.Store.StoreManager;
@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * J-unit test for StoreManager
- * @author Evan Smedley
+ * @author Evan Smedley - 101148695
  */
 class StoreManagerTest {
 
@@ -18,6 +18,9 @@ class StoreManagerTest {
      */
     private static StoreManager sm;
 
+    /**
+     * Initializes a StoreManager object for testing.
+     */
     @BeforeAll
     public static void init() {
         sm = new StoreManager();
@@ -26,6 +29,9 @@ class StoreManagerTest {
         sm.add(new Product("TestProd", 1, 1.00), 5, 0);
     }
 
+    /**
+     * Tests StoreManager's constructor.
+     */
     @Test
     public void testConstructor() {
         assertEquals(7, sm.getNumProducts(-1),
@@ -45,6 +51,9 @@ class StoreManagerTest {
                 "The constructor does not add the correct amount of stock for a product, constructor failed");
     }
 
+    /**
+     * Tests StoreManager's assignNewCartID() method.
+     */
     @Test
     public void testAssignNewCartID() {
         int id = sm.assignNewCartID();
@@ -60,6 +69,9 @@ class StoreManagerTest {
                 "assignNewCartID failed");
     }
 
+    /**
+     * Tests StoreManager's getID() method.
+     */
     @Test
     public void testGetID() {
         int id = sm.getID(5, -1);
@@ -82,6 +94,9 @@ class StoreManagerTest {
         assertEquals(1, id, "getID is not accessing shopping carts correctly, getID failed");
     }
 
+    /**
+     * Tests StoreManager's getName() method.
+     */
     @Test
     public void testGetName() {
         String name = sm.getName(2, 0);
@@ -107,6 +122,9 @@ class StoreManagerTest {
         assertNull(name, "getName does not handle accessing an empty cart correctly, getName failed");
     }
 
+    /**
+     * Tests StoreManager's getPrice() method.
+     */
     @Test
     public void testGetPrice() {
         double price = sm.getPrice(2, 0);
@@ -136,6 +154,9 @@ class StoreManagerTest {
                 "getPrice does not handle accessing an empty cart correctly, getPrice failed");
     }
 
+    /**
+     * Tests StoreManager's getStock() method.
+     */
     @Test
     public void testGetStock() {
         int stock = sm.getStock(2, 0);
@@ -165,6 +186,9 @@ class StoreManagerTest {
                 "getStock failed");
     }
 
+    /**
+     * Tests StoreManager's getNumProducts() method.
+     */
     @Test
     public void testGetNumProducts() {
         int numProducts = sm.getNumProducts(7);
@@ -188,6 +212,9 @@ class StoreManagerTest {
                         "getNumProducts failed");
     }
 
+    /**
+     * Tests StoreManager's add() method.
+     */
     @Test
     public void testAdd() {
         sm.add(new Product("test", 25, 15.00), 50, -1);
@@ -218,6 +245,9 @@ class StoreManagerTest {
         sm.remove(101, 2, -1);
     }
 
+    /**
+     * Tests StoreManager's remove() method.
+     */
     @Test
     public void testRemove() {
         boolean success = sm.remove(103, 2, -1);
