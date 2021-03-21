@@ -44,6 +44,27 @@ class InventoryTest {
     }
 
     /**
+     * Tests Inventory's constructor.
+     */
+    @Test
+    public void testConstructor() {
+        assertEquals("test3", inventory.getProductName(3),
+                "The constructor does not initialize a product name correctly");
+
+        assertEquals(2.00, inventory.getProductPrice(2),
+                "The constructor does not initialize a product price correctly");
+
+        assertEquals(40, inventory.getStock(4),
+                "The constructor does not initialize a product's stock correctly");
+
+        assertEquals(1, inventory.getProductID(0),
+                "The constructor does not initialize a product's stock correctly");
+
+        assertEquals(4, inventory.getNumProducts(),
+                "The constructor does not add the correct number of products to the inventory");
+    }
+
+    /**
      * Tests Inventory's addStock() method.
      */
     @Test
