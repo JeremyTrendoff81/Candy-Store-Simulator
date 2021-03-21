@@ -1,7 +1,7 @@
 package SYSC2004.Milestone3.storetest;
 
-import SYSC2004.Milestone3.Store.Product;
-import SYSC2004.Milestone3.Store.StoreManager;
+import SYSC2004.Milestone3.store.Product;
+import SYSC2004.Milestone3.store.StoreManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

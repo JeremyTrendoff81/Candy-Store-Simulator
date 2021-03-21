@@ -1,4 +1,4 @@
-package SYSC2004.Milestone3.Store;
+package SYSC2004.Milestone3.store;
 
 /**
  * The ShoppingCart class will maintain the products the user chooses to purchase.

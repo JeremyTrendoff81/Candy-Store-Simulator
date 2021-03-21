@@ -1,4 +1,4 @@
-package SYSC2004.Milestone3.Store;
+package SYSC2004.Milestone3.store;
 
 /**
  * The product class will store information about the items being sold by the store.

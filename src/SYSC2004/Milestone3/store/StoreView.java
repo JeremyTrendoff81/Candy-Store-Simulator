@@ -1,4 +1,4 @@
-package SYSC2004.Milestone3.Store;
+package SYSC2004.Milestone3.store;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
