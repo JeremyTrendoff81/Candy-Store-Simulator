@@ -56,6 +56,12 @@ public class StoreView {
     private ArrayList<JPanel> cartProducts;
 
     /**
+     *  A constant boolean that determines which UI to use. GUI = true, use Graphical User Interface. GUI = false,
+     *  use Console User Interface.
+     */
+    private static final boolean GUI = true;
+
+    /**
      * Constructor for StoreView. Initialize the StoreView with specified values.
      *
      * @param manager A StoreManager object that represents the StoreViews StoreManager.
@@ -405,11 +411,9 @@ public class StoreView {
 
 
     /**
-     * The main method
-     *
-     * @param args String[], contains arguments passed from the command line.
+     * Run the program using a console user interface.
      */
-    public static void main2(String[] args) {
+    public static void consoleUI() {
         StoreManager manager = new StoreManager();
         Scanner in = new Scanner(System.in);
 
@@ -495,17 +499,6 @@ public class StoreView {
             isFirstRun = false;
         }
         System.out.println("\nALL STOREVIEWS DEACTIVATED");
-    }
-
-
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        StoreManager manager = new StoreManager();
-        StoreView user = new StoreView(manager, manager.assignNewCartID());
-        user.displayGUI();
     }
 
     private JButton makeMoveButton(int productID, JLabel cartLabel, JLabel inventoryLabel, int addLocation, int removeLocation) {
@@ -600,5 +593,18 @@ public class StoreView {
 
         // Make frame visible
         this.frame.setVisible(true);
+    }
+
+    /**
+     * The main method.
+     */
+    public static void main(String[] args) {
+        if (GUI) {
+            StoreManager manager = new StoreManager();
+            StoreView user = new StoreView(manager, manager.assignNewCartID());
+            user.displayGUI();
+        } else {
+            consoleUI();
+        }
     }
 }
