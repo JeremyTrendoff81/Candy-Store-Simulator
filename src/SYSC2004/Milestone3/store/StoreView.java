@@ -1,8 +1,14 @@
 package SYSC2004.Milestone3.store;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import javax.swing.*;
 
 /**
  * The StoreView class will display the User Interface of the store.
@@ -25,6 +31,31 @@ public class StoreView {
     private final int id;
 
     /**
+     *
+     */
+    private JFrame frame;
+
+    /**
+     *
+     */
+    private JPanel inventory;
+
+    /**
+     *
+     */
+    private JPanel cart;
+
+    /**
+     *
+     */
+    private ArrayList<JPanel> inventoryProducts;
+
+    /**
+     *
+     */
+    private ArrayList<JPanel> cartProducts;
+
+    /**
      * Constructor for StoreView. Initialize the StoreView with specified values.
      *
      * @param manager A StoreManager object that represents the StoreViews StoreManager.
@@ -33,6 +64,18 @@ public class StoreView {
     private StoreView(StoreManager manager, int id) {
         this.manager = manager;
         this.id = id;
+
+        this.frame = new JFrame("Store");
+        this.frame.setBackground(Color.WHITE);
+        this.frame.setPreferredSize(new Dimension(1000,1000));
+
+        int numProducts = this.manager.getNumProducts(-1);
+        this.inventoryProducts = new ArrayList<>();
+        this.cartProducts = new ArrayList<>();
+        this.inventory = new JPanel(new GridLayout(numProducts/4 + 1, 4));
+        this.inventory.setBackground(Color.WHITE);
+        this.cart = new JPanel(new GridLayout(numProducts/4 + 1, 4));
+        this.cart.setBackground(Color.WHITE);
     }
 
     /**
@@ -366,7 +409,7 @@ public class StoreView {
      *
      * @param args String[], contains arguments passed from the command line.
      */
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         StoreManager manager = new StoreManager();
         Scanner in = new Scanner(System.in);
 
@@ -452,5 +495,110 @@ public class StoreView {
             isFirstRun = false;
         }
         System.out.println("\nALL STOREVIEWS DEACTIVATED");
+    }
+
+
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        StoreManager manager = new StoreManager();
+        StoreView user = new StoreView(manager, manager.assignNewCartID());
+        user.displayGUI();
+    }
+
+    private JButton makeMoveButton(int productID, JLabel cartLabel, JLabel inventoryLabel, int addLocation, int removeLocation) {
+        JButton button;
+        if (addLocation == -1) {
+            button = new JButton("Remove from Cart");
+        } else {
+            button = new JButton("Add to Cart");
+        }
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String name = manager.getName(productID, removeLocation);
+                double price = manager.getPrice(productID, removeLocation);
+                manager.add(new Product(name, productID, price), 1, addLocation);
+                manager.remove(productID, 1, removeLocation);
+                cartLabel.setText(String.format("Quantity: %d", manager.getStock(productID, id)));
+                inventoryLabel.setText(String.format("Quantity: %d", manager.getStock(productID, -1)));
+            }
+        });
+        return button;
+    }
+
+    /**
+     *
+     */
+    private void displayGUI() {
+
+        // Create product panels
+        int productID;
+        JPanel tempPanel;
+        int numProducts = this.manager.getNumProducts(-1);
+        JLabel iLabel;
+        JLabel cLabel;
+
+        for (int i = 0; i < numProducts; i++) {
+
+            // Create inventory product panels
+            productID = this.manager.getID(i, -1);
+            this.inventoryProducts.add(new JPanel());
+            this.inventoryProducts.get(i).setLayout(new BoxLayout(this.inventoryProducts.get(i), BoxLayout.PAGE_AXIS));
+            this.inventoryProducts.get(i).setBackground(Color.WHITE);
+            this.inventoryProducts.get(i).setPreferredSize(new Dimension(100,100));
+
+            // Create cart product panels
+            this.cartProducts.add(new JPanel());
+            this.cartProducts.get(i).setLayout(new BoxLayout(this.cartProducts.get(i), BoxLayout.PAGE_AXIS));
+            this.cartProducts.get(i).setBackground(Color.WHITE);
+            this.cartProducts.get(i).setPreferredSize(new Dimension(100,100));
+
+            // Add product names
+            this.inventoryProducts.get(i).add(new JLabel(this.manager.getName(productID, -1)));
+            this.cartProducts.get(i).add(new JLabel(this.manager.getName(productID, -1)));
+
+            // Figure out how to add an image to the panels here
+
+            // Add product quantity
+            iLabel = new JLabel(String.format("Quantity: %d", this.manager.getStock(productID, -1)));
+            this.inventoryProducts.get(i).add(iLabel);
+            cLabel = new JLabel(String.format("Quantity: %d", this.manager.getStock(productID, -1)));
+            this.cartProducts.get(i).add(cLabel);
+
+            // Create a space between quantity and buttons
+            this.inventoryProducts.get(i).add(Box.createRigidArea(new Dimension(0,5)));
+            this.cartProducts.get(i).add(Box.createRigidArea(new Dimension(0,5)));
+
+            // Add buttons
+            this.inventoryProducts.get(i).add(this.makeMoveButton(productID, cLabel, iLabel, this.id, -1));
+            this.cartProducts.get(i).add(this.makeMoveButton(productID, cLabel, iLabel, -1, this.id));
+
+            // Add inventory products to inventory panel
+            this.inventory.add(this.inventoryProducts.get(i));
+        }
+
+        // Finalize frame
+        this.frame.add(this.inventory);
+        this.frame.pack();
+
+        // Add window listener
+        this.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                if (JOptionPane.showConfirmDialog(frame, "Are you sure you want to quit?")
+                        == JOptionPane.OK_OPTION) {
+                    // close it down!
+                    frame.setVisible(false);
+                    frame.dispose();
+                }
+            }
+        });
+
+        // Make frame visible
+        this.frame.setVisible(true);
     }
 }
