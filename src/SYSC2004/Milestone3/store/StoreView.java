@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.*;
+import javax.swing.border.Border;
 
 /**
  * The StoreView class will display the User Interface of the store.
@@ -56,6 +57,11 @@ public class StoreView {
     private ArrayList<JPanel> cartProducts;
 
     /**
+     *
+     */
+    private JLabel total;
+
+    /**
      *  A constant boolean that determines which UI to use. GUI = true, use Graphical User Interface. GUI = false,
      *  use Console User Interface.
      */
@@ -72,16 +78,24 @@ public class StoreView {
         this.id = id;
 
         this.frame = new JFrame("Store");
-        this.frame.setBackground(Color.WHITE);
-        this.frame.setPreferredSize(new Dimension(1000,1000));
+        this.frame.setLayout(new BorderLayout());
+        this.frame.setBackground(Color.GRAY);
+        this.frame.setForeground(Color.LIGHT_GRAY);
+        this.frame.setPreferredSize(new Dimension(1000,800));
 
         int numProducts = this.manager.getNumProducts(-1);
         this.inventoryProducts = new ArrayList<>();
         this.cartProducts = new ArrayList<>();
-        this.inventory = new JPanel(new GridLayout(numProducts/4 + 1, 4));
-        this.inventory.setBackground(Color.WHITE);
-        this.cart = new JPanel(new GridLayout(numProducts/4 + 1, 4));
-        this.cart.setBackground(Color.WHITE);
+
+        this.inventory = new JPanel(new GridLayout(numProducts/2 + 1, 2));
+        this.inventory.setBackground(Color.GRAY);
+        this.inventory.setForeground(Color.LIGHT_GRAY);
+
+        this.cart = new JPanel(new GridLayout(numProducts/2 + 1, 2));
+        this.cart.setBackground(Color.GRAY);
+        this.cart.setForeground(Color.LIGHT_GRAY);
+
+        this.total = new JLabel(String.format("Your total is: $%.2f", 0.0));
     }
 
     /**
@@ -501,26 +515,64 @@ public class StoreView {
         System.out.println("\nALL STOREVIEWS DEACTIVATED");
     }
 
-    private JButton makeMoveButton(int productID, JLabel cartLabel, JLabel inventoryLabel, int addLocation, int removeLocation) {
-        JButton button;
-        if (addLocation == -1) {
-            button = new JButton("Remove from Cart");
-        } else {
-            button = new JButton("Add to Cart");
+    private void updateTotalPrice() {
+        double totalPrice = 0;
+        int productID;
+        for (int i = 0; i < manager.getNumProducts(id); i++) {
+            productID = manager.getID(i, id);
+            totalPrice += manager.getPrice(productID, id) * manager.getStock(productID, id);
         }
+        total.setText(String.format("Your total is %.2f", totalPrice));
+    }
+
+    private JButton makeAddButton(int productID, int index, JLabel cartLabel, JLabel inventoryLabel) {
+        JButton button = new JButton("Add to Cart");
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                String name = manager.getName(productID, removeLocation);
-                double price = manager.getPrice(productID, removeLocation);
-                manager.add(new Product(name, productID, price), 1, addLocation);
-                manager.remove(productID, 1, removeLocation);
+                if (manager.getStock(productID, id) == -1) {
+                    cart.add(cartProducts.get(index));
+                }
+                String name = manager.getName(productID, -1);
+                double price = manager.getPrice(productID, -1);
+                manager.add(new Product(name, productID, price), 1, id);
+                manager.remove(productID, 1, -1);
                 cartLabel.setText(String.format("Quantity: %d", manager.getStock(productID, id)));
                 inventoryLabel.setText(String.format("Quantity: %d", manager.getStock(productID, -1)));
+                if (manager.getStock(productID, -1) == -1) {
+                    inventory.remove(inventoryProducts.get(index));
+                }
+                updateTotalPrice();
             }
         });
         return button;
     }
+
+    private JButton makeRemoveButton(int productID, int index, JLabel cartLabel, JLabel inventoryLabel) {
+        JButton button = new JButton("Remove from Cart");
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if (manager.getStock(productID, -1) == -1) {
+                    inventory.add(inventoryProducts.get(index));
+                }
+                String name = manager.getName(productID, id);
+                double price = manager.getPrice(productID, id);
+                manager.add(new Product(name, productID, price), 1, -1);
+                manager.remove(productID, 1, id);
+                cartLabel.setText(String.format("Quantity: %d", manager.getStock(productID, id)));
+                inventoryLabel.setText(String.format("Quantity: %d", manager.getStock(productID, -1)));
+                if (manager.getStock(productID, id) == -1) {
+                    cart.remove(cartProducts.get(index));
+                }
+                updateTotalPrice();
+            }
+        });
+        return button;
+    }
+
 
     /**
      *
@@ -531,6 +583,10 @@ public class StoreView {
         int productID;
         JPanel tempPanel;
         int numProducts = this.manager.getNumProducts(-1);
+        JLabel iName;
+        JLabel cName;
+        JLabel iPrice;
+        JLabel cPrice;
         JLabel iLabel;
         JLabel cLabel;
 
@@ -539,26 +595,42 @@ public class StoreView {
             // Create inventory product panels
             productID = this.manager.getID(i, -1);
             this.inventoryProducts.add(new JPanel());
-            this.inventoryProducts.get(i).setLayout(new BoxLayout(this.inventoryProducts.get(i), BoxLayout.PAGE_AXIS));
-            this.inventoryProducts.get(i).setBackground(Color.WHITE);
+            this.inventoryProducts.get(i).setLayout(new BoxLayout(this.inventoryProducts.get(i), BoxLayout.Y_AXIS));
+            this.inventoryProducts.get(i).setBackground(Color.LIGHT_GRAY);
+            this.inventoryProducts.get(i).setBorder(BorderFactory.createLineBorder(Color.BLACK));
             this.inventoryProducts.get(i).setPreferredSize(new Dimension(100,100));
 
             // Create cart product panels
             this.cartProducts.add(new JPanel());
-            this.cartProducts.get(i).setLayout(new BoxLayout(this.cartProducts.get(i), BoxLayout.PAGE_AXIS));
-            this.cartProducts.get(i).setBackground(Color.WHITE);
+            this.cartProducts.get(i).setLayout(new BoxLayout(this.cartProducts.get(i), BoxLayout.Y_AXIS));
+            this.cartProducts.get(i).setBackground(Color.LIGHT_GRAY);
+            this.cartProducts.get(i).setBorder(BorderFactory.createLineBorder(Color.BLACK));
             this.cartProducts.get(i).setPreferredSize(new Dimension(100,100));
 
             // Add product names
-            this.inventoryProducts.get(i).add(new JLabel(this.manager.getName(productID, -1)));
-            this.cartProducts.get(i).add(new JLabel(this.manager.getName(productID, -1)));
+            iName = new JLabel(this.manager.getName(productID, -1));
+            iName.setAlignmentX(Component.CENTER_ALIGNMENT);
+            this.inventoryProducts.get(i).add(iName);
+            cName = new JLabel(this.manager.getName(productID, -1));
+            cName.setAlignmentX(Component.CENTER_ALIGNMENT);
+            this.cartProducts.get(i).add(cName);
 
             // Figure out how to add an image to the panels here
 
+            // Add product prices
+            iPrice = new JLabel(String.format("Price: $%.2f", this.manager.getPrice(productID, -1)));
+            iPrice.setAlignmentX(Component.CENTER_ALIGNMENT);
+            this.inventoryProducts.get(i).add(iPrice);
+            cPrice = new JLabel(String.format("Price: $%.2f", this.manager.getPrice(productID, -1)));
+            cPrice.setAlignmentX(Component.CENTER_ALIGNMENT);
+            this.cartProducts.get(i).add(cPrice);
+
             // Add product quantity
             iLabel = new JLabel(String.format("Quantity: %d", this.manager.getStock(productID, -1)));
+            iLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             this.inventoryProducts.get(i).add(iLabel);
             cLabel = new JLabel(String.format("Quantity: %d", this.manager.getStock(productID, -1)));
+            cLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             this.cartProducts.get(i).add(cLabel);
 
             // Create a space between quantity and buttons
@@ -566,15 +638,61 @@ public class StoreView {
             this.cartProducts.get(i).add(Box.createRigidArea(new Dimension(0,5)));
 
             // Add buttons
-            this.inventoryProducts.get(i).add(this.makeMoveButton(productID, cLabel, iLabel, this.id, -1));
-            this.cartProducts.get(i).add(this.makeMoveButton(productID, cLabel, iLabel, -1, this.id));
+            this.inventoryProducts.get(i).add(this.makeAddButton(productID, i, cLabel, iLabel));
+            this.cartProducts.get(i).add(this.makeRemoveButton(productID, i, cLabel, iLabel));
 
             // Add inventory products to inventory panel
             this.inventory.add(this.inventoryProducts.get(i));
         }
 
+        // Create title
+        this.frame.add(new JLabel(String.format("Welcome to The Course Store! (ID: %d)", this.id)), BorderLayout.PAGE_START);
+
+        // Create panes with titles for inventory and cart
+        JTabbedPane tabs = new JTabbedPane();
+        tabs.add("Inventory", this.inventory);
+        tabs.add("Cart", this.cart);
+
+        // Create bottom panel
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.LINE_AXIS));
+        bottomPanel.add(Box.createRigidArea(new Dimension(20,10)));
+        bottomPanel.add(this.total);
+        bottomPanel.add(Box.createRigidArea(new Dimension(100, 10)));
+        JButton exit = new JButton("Exit");
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                frame.setVisible(false);
+                frame.dispose();
+            }
+        });
+        JButton checkout = new JButton("Checkout");
+        checkout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                double totalPrice = 0;
+                int productID;
+                for (int i = 0; i < manager.getNumProducts(id); i++) {
+                    productID = manager.getID(i, id);
+                    totalPrice += manager.getPrice(productID, id) * manager.getStock(productID, id);
+                }
+                JPanel checkoutPanel = new JPanel();
+                checkoutPanel.add(new JLabel(String.format("Thank you for shopping at The Course Store! " +
+                        "Your total is $%.2f", totalPrice)));
+                checkoutPanel.add(Box.createRigidArea(new Dimension(100, 10)));
+                checkoutPanel.add(exit);
+                frame.remove(bottomPanel);
+                frame.add(checkoutPanel, BorderLayout.PAGE_END);
+            }
+
+        });
+        bottomPanel.add(checkout, BorderLayout.PAGE_END);
+
+
         // Finalize frame
-        this.frame.add(this.inventory);
+        this.frame.add(tabs, BorderLayout.CENTER);
+        this.frame.add(bottomPanel, BorderLayout.PAGE_END);
         this.frame.pack();
 
         // Add window listener
