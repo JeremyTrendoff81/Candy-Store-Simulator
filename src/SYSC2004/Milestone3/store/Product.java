@@ -1,10 +1,12 @@
 package SYSC2004.Milestone3.store;
 
+import java.awt.*;
+
 /**
  * The product class will store information about the items being sold by the store.
  *
  * @author Jeremy Trendoff - 101160306, Evan Smedley - 101148695
- * @version 2.0
+ * @version 3.0
  * @since Feb 23, 2021
  */
 
@@ -26,6 +28,11 @@ public class Product {
     private final double price;
 
     /**
+     * An Image for the product.
+     */
+    private final String productImage;
+
+    /**
      * Constructor to initialize a product.
      *
      * @param name Parameter, of type String, to represent the name of the product.
@@ -33,9 +40,22 @@ public class Product {
      * @param price Parameter, of type double, to represent the price of the product.
      */
     public Product(String name, int id, double price) {
+        this(name, id, price, null);
+    }
+
+    /**
+     * Constructor to initialize a product.
+     *
+     * @param name Parameter, of type String, to represent the name of the product.
+     * @param id Parameter, of type int, to represent the id of the product.
+     * @param price Parameter, of type double, to represent the price of the product.
+     * @param productImage Parameter, of type string, to represent the products image.
+     */
+    public Product(String name, int id, double price, String productImage) {
         this.name = name;
         this.id = id;
         this.price = price;
+        this.productImage = productImage;
     }
 
     /**
@@ -63,5 +83,14 @@ public class Product {
      */
     public double getPrice() {
         return this.price;
+    }
+
+    /**
+     * Get the product's image.
+     *
+     * @return Return the image of the product.
+     */
+    public String getProductImage() {
+        return productImage;
     }
 }

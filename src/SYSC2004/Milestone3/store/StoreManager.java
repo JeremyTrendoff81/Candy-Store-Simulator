@@ -1,5 +1,6 @@
 package SYSC2004.Milestone3.store;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -32,13 +33,13 @@ public class StoreManager {
      */
     public StoreManager() {
         ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product("SYSC2004", 101, 100.00));
-        products.add(new Product("SYSC4906", 102, 55.00));
-        products.add(new Product("SYSC2006", 103, 45.00));
-        products.add(new Product("MUSI1001", 104, 35.00));
-        products.add(new Product("CRCJ1000", 105, 0.01));
-        products.add(new Product("ELEC4705", 106, 25.00));
-        products.add(new Product("SYSC4907", 107, 145.00));
+        products.add(new Product("SYSC2004", 101, 100.00, "kidoncomputer.png"));
+        products.add(new Product("SYSC4906", 102, 55.00, "face.png"));
+        products.add(new Product("SYSC2006", 103, 45.00, "kidoncomputer.png"));
+        products.add(new Product("MUSI1001", 104, 35.00, "face.png"));
+        products.add(new Product("CRCJ1000", 105, 0.01, "kidoncomputer.png"));
+        products.add(new Product("ELEC4705", 106, 25.00,"face.png"));
+        products.add(new Product("SYSC4907", 107, 145.00, "kidoncomputer.png"));
 
         ArrayList<Integer> stock = new ArrayList<>();
         stock.add(76);
@@ -182,5 +183,21 @@ public class StoreManager {
         }
     }
 
+    /**
+     * Get a products image from the inventory of a shopping cart.
+     *
+     * @param id int, the id of the product to be removed
+     * @param location int, specifies whether to access a cart or the inventory
+     * @return  An Image, the image of the product.
+     */
+    public String getProductImage(int id, int location) {
+        if (location == -1) {
+            return this.inventory.getProductImage(id);
+        } else if ((location >= 0) && (location < carts.size())) {
+            return this.carts.get(location).getProductImage(id);
+        } else {
+            return null;
+        }
+    }
 
 }

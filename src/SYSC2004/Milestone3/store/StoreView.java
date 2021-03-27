@@ -5,9 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -49,12 +52,12 @@ public class StoreView {
     /**
      *
      */
-    private ArrayList<JPanel> inventoryProducts;
+    private ArrayList<ImagePanel> inventoryProducts;
 
     /**
      *
      */
-    private ArrayList<JPanel> cartProducts;
+    private ArrayList<ImagePanel> cartProducts;
 
     /**
      *
@@ -536,7 +539,8 @@ public class StoreView {
                 }
                 String name = manager.getName(productID, -1);
                 double price = manager.getPrice(productID, -1);
-                manager.add(new Product(name, productID, price), 1, id);
+                String productImage = manager.getProductImage(productID, -1);
+                manager.add(new Product(name, productID, price, productImage), 1, id);
                 manager.remove(productID, 1, -1);
                 cartLabel.setText(String.format("Quantity: %d", manager.getStock(productID, id)));
                 inventoryLabel.setText(String.format("Quantity: %d", manager.getStock(productID, -1)));
@@ -559,7 +563,8 @@ public class StoreView {
                 }
                 String name = manager.getName(productID, id);
                 double price = manager.getPrice(productID, id);
-                manager.add(new Product(name, productID, price), 1, -1);
+                String productImage = manager.getProductImage(productID, id);
+                manager.add(new Product(name, productID, price, productImage), 1, -1);
                 manager.remove(productID, 1, id);
                 cartLabel.setText(String.format("Quantity: %d", manager.getStock(productID, id)));
                 inventoryLabel.setText(String.format("Quantity: %d", manager.getStock(productID, -1)));
@@ -593,14 +598,14 @@ public class StoreView {
 
             // Create inventory product panels
             productID = this.manager.getID(i, -1);
-            this.inventoryProducts.add(new JPanel());
+            this.inventoryProducts.add(new ImagePanel(this.manager.getProductImage(productID, -1)));
             this.inventoryProducts.get(i).setLayout(new BoxLayout(this.inventoryProducts.get(i), BoxLayout.Y_AXIS));
             this.inventoryProducts.get(i).setBackground(Color.LIGHT_GRAY);
             this.inventoryProducts.get(i).setBorder(BorderFactory.createLineBorder(Color.BLACK));
             this.inventoryProducts.get(i).setPreferredSize(new Dimension(100,100));
 
             // Create cart product panels
-            this.cartProducts.add(new JPanel());
+            this.cartProducts.add(new ImagePanel(this.manager.getProductImage(productID, -1)));
             this.cartProducts.get(i).setLayout(new BoxLayout(this.cartProducts.get(i), BoxLayout.Y_AXIS));
             this.cartProducts.get(i).setBackground(Color.LIGHT_GRAY);
             this.cartProducts.get(i).setBorder(BorderFactory.createLineBorder(Color.BLACK));

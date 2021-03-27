@@ -1,5 +1,6 @@
 package SYSC2004.Milestone3.store;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -154,5 +155,21 @@ public class Inventory {
      */
     public int getNumProducts() {
         return this.productList.size();
+    }
+
+    /**
+     * Get a products product image.
+     *
+     * @param id    An int representing the id of the product.
+     * @return  An Image, the image of the product.
+     */
+    public String getProductImage(int id) {
+        int i = haveProduct(id);
+
+        if (i != -1) {
+            return this.productList.get(i).getProductImage();
+        } else {
+            return null;
+        }
     }
 }
