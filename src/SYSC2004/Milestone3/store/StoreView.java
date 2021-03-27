@@ -553,8 +553,7 @@ public class StoreView {
         JButton button = new JButton("Remove from Cart");
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+            public void actionPerformed(ActionEvent e) {
                 if (manager.getStock(productID, -1) == -1) {
                     inventory.add(inventoryProducts.get(index));
                 }
