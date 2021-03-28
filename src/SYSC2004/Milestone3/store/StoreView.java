@@ -619,8 +619,6 @@ public class StoreView {
             cName.setAlignmentX(Component.CENTER_ALIGNMENT);
             this.cartProducts.get(i).add(cName);
 
-            // Figure out how to add an image to the panels here
-
             // Add product prices
             iPrice = new JLabel(String.format("Price: $%.2f", this.manager.getPrice(productID, -1)));
             iPrice.setAlignmentX(Component.CENTER_ALIGNMENT);
