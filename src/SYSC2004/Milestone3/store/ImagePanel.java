@@ -26,6 +26,8 @@ public class ImagePanel extends JPanel {
      * @param imageString   A String, the name of the image to be displayed.
      */
     public ImagePanel(String imageString) {
+        super();
+
         try {
             image = ImageIO.read(this.getClass().getResource(imageString));
         } catch (Exception ex) {
@@ -48,10 +50,13 @@ public class ImagePanel extends JPanel {
      * @param imageString  String, the name of the image to be displayed.
      */
     public void setImage(String imageString) {
+        BufferedImage temp = image;
+
         try {
             image = ImageIO.read(this.getClass().getResource(imageString));
         } catch (Exception ex) {
-            image = null;
+            System.err.println("ERROR: setImage() failed...");
+            image = temp;
         }
     }
 
