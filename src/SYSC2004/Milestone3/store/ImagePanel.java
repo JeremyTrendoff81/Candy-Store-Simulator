@@ -29,9 +29,9 @@ public class ImagePanel extends JPanel {
         super();
 
         try {
-            image = ImageIO.read(this.getClass().getResource(imageString));
+            this.image = ImageIO.read(this.getClass().getResource(imageString));
         } catch (Exception ex) {
-            image = null;
+            this.image = null;
         }
     }
 
@@ -41,7 +41,7 @@ public class ImagePanel extends JPanel {
      * @return  A BufferedImage, the image being displayed.
      */
     public BufferedImage getImage() {
-        return image;
+        return this.image;
     }
 
     /**
@@ -50,13 +50,13 @@ public class ImagePanel extends JPanel {
      * @param imageString  String, the name of the image to be displayed.
      */
     public void setImage(String imageString) {
-        BufferedImage temp = image;
+        BufferedImage temp = this.image;
 
         try {
-            image = ImageIO.read(this.getClass().getResource(imageString));
+            this.image = ImageIO.read(this.getClass().getResource(imageString));
         } catch (Exception ex) {
             System.err.println("ERROR: setImage() failed...");
-            image = temp;
+            this.image = temp;
         }
     }
 
@@ -69,6 +69,6 @@ public class ImagePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawImage(image, 50, 40, this.getWidth() - 100, this.getHeight() - 30, this);
+        g.drawImage(this.image, 50, 40, this.getWidth() - 100, this.getHeight() - 30, this);
     }
 }
