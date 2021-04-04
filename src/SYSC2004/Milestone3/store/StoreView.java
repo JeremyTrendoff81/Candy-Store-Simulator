@@ -37,11 +37,6 @@ public class StoreView {
     /**
      *
      */
-    private JFrame frame;
-
-    /**
-     *
-     */
     private JPanel inventory;
 
     /**
@@ -80,16 +75,11 @@ public class StoreView {
         this.manager = manager;
         this.id = id;
 
-        this.frame = new JFrame("Store");
-        this.frame.setLayout(new BorderLayout());
-        this.frame.setBackground(Color.GRAY);
-        this.frame.setForeground(Color.LIGHT_GRAY);
-        this.frame.setPreferredSize(new Dimension(1000,800));
-
         int numProducts = this.manager.getNumProducts(-1);
         this.inventoryProducts = new ArrayList<>();
         this.cartProducts = new ArrayList<>();
 
+        // Set the layout and color of JPanels
         this.inventory = new JPanel(new GridLayout(numProducts/2 + 1, 2));
         this.inventory.setBackground(Color.GRAY);
         this.inventory.setForeground(Color.LIGHT_GRAY);
@@ -98,6 +88,7 @@ public class StoreView {
         this.cart.setBackground(Color.GRAY);
         this.cart.setForeground(Color.LIGHT_GRAY);
 
+        // Create total label
         this.total = new JLabel(String.format("Your total is: $%.2f", 0.0));
     }
 
@@ -583,9 +574,15 @@ public class StoreView {
      */
     private void displayGUI() {
 
+        // Create frame
+        JFrame frame = new JFrame("Store");
+        frame.setLayout(new BorderLayout());
+        frame.setBackground(Color.GRAY);
+        frame.setForeground(Color.LIGHT_GRAY);
+        frame.setPreferredSize(new Dimension(1000,800));
+
         // Create product panels
         int productID;
-        JPanel tempPanel;
         int numProducts = this.manager.getNumProducts(-1);
         JLabel iName;
         JLabel cName;
@@ -648,9 +645,9 @@ public class StoreView {
         }
 
         // Create title
-        this.frame.add(new JLabel(String.format("Welcome to The Course Store! (ID: %d)", this.id)), BorderLayout.PAGE_START);
+        frame.add(new JLabel(String.format("Welcome to The Course Store! (ID: %d)", this.id)), BorderLayout.PAGE_START);
 
-        // Create panes with titles for inventory and cart
+        // Create tabbed panes with titles for inventory and cart
         JTabbedPane tabs = new JTabbedPane();
         tabs.add("Inventory", this.inventory);
         tabs.add("Cart", this.cart);
@@ -661,31 +658,40 @@ public class StoreView {
         bottomPanel.add(Box.createRigidArea(new Dimension(20,10)));
         bottomPanel.add(this.total);
         bottomPanel.add(Box.createRigidArea(new Dimension(100, 10)));
-        JButton exit = new JButton("Exit");
-        exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                frame.setVisible(false);
-                frame.dispose();
-            }
-        });
         JButton checkout = new JButton("Checkout");
         checkout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+
+                // Declare/initialize variables for the loop
                 double totalPrice = 0;
+                StringBuilder receiptBuilder = new StringBuilder();
                 int productID;
+                String name;
+                double price;
+                int stock;
+
+                // Add receipt header
+                receiptBuilder.append("Name         | Price        | Quantity     \n");
+
+                // Loop through all products in the shopping cart
                 for (int i = 0; i < manager.getNumProducts(id); i++) {
                     productID = manager.getID(i, id);
-                    totalPrice += manager.getPrice(productID, id) * manager.getStock(productID, id);
+                    name = manager.getName(productID, id);
+                    price = manager.getPrice(productID, id);
+                    stock = manager.getStock(productID, id);
+                    totalPrice += price * stock;
+                    receiptBuilder.append(String.format("%10s | %10.2f | %10d\n", name, price, stock));
                 }
-                JPanel checkoutPanel = new JPanel();
-                checkoutPanel.add(new JLabel(String.format("Thank you for shopping at The Course Store! " +
-                        "Your total is $%.2f", totalPrice)));
-                checkoutPanel.add(Box.createRigidArea(new Dimension(100, 10)));
-                checkoutPanel.add(exit);
-                frame.remove(bottomPanel);
-                frame.add(checkoutPanel, BorderLayout.PAGE_END);
+                receiptBuilder.append(String.format("------------------------------------\nYour total is: $%.2f\n",
+                        totalPrice));
+                receiptBuilder.append("Thank you for shopping at the course store!");
+                int userChoice = JOptionPane.showConfirmDialog(frame, receiptBuilder.toString(), "Receipt", JOptionPane.OK_CANCEL_OPTION);
+
+                if (userChoice == JOptionPane.OK_OPTION) {
+                    frame.setVisible(false);
+                    frame.dispose();
+                }
             }
 
         });
@@ -693,13 +699,13 @@ public class StoreView {
 
 
         // Finalize frame
-        this.frame.add(tabs, BorderLayout.CENTER);
-        this.frame.add(bottomPanel, BorderLayout.PAGE_END);
-        this.frame.pack();
+        frame.add(tabs, BorderLayout.CENTER);
+        frame.add(bottomPanel, BorderLayout.PAGE_END);
+        frame.pack();
 
         // Add window listener
-        this.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.frame.addWindowListener(new WindowAdapter() {
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
                 if (JOptionPane.showConfirmDialog(frame, "Are you sure you want to quit?")
@@ -712,7 +718,7 @@ public class StoreView {
         });
 
         // Make frame visible
-        this.frame.setVisible(true);
+        frame.setVisible(true);
     }
 
     /**
