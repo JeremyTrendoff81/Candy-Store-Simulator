@@ -79,7 +79,7 @@ public class StoreView {
         this.inventoryProducts = new ArrayList<>();
         this.cartProducts = new ArrayList<>();
 
-        // Set the layout and color of JPanels
+        // Set the layout and color of the inventory and cart JPanels
         this.inventory = new JPanel(new GridLayout(numProducts/2 + 1, 2));
         this.inventory.setBackground(Color.GRAY);
         this.inventory.setForeground(Color.LIGHT_GRAY);
@@ -129,7 +129,7 @@ public class StoreView {
             return false;
 
         } else if (command.equals("browse")) {
-            System.out.println("|--------------------The Course Store--------------------|");
+            System.out.println("|--------------------The Candy Store---------------------|");
             System.out.println("| BROWSE ------------------------------------------------|\n");
 
             System.out.println(String.format("%-12s %-15s %-15s", "Stock", "Product Name", "Unit Price"));
@@ -148,7 +148,7 @@ public class StoreView {
 
 
         } else if (command.equals("addtocart")) {
-            System.out.println("|--------------------The Course Store--------------------|");
+            System.out.println("|--------------------The Candy Store---------------------|");
             System.out.println("| ADD TO CART -------------------------------------------|\n");
 
             System.out.println(String.format("%-12s %-15s %-15s %-8s", "Stock", "Product Name", "Unit Price",
@@ -202,7 +202,7 @@ public class StoreView {
 
 
         } else if (command.equals("removefromcart")) {
-            System.out.println("|--------------------The Course Store--------------------|");
+            System.out.println("|--------------------The Candy Store---------------------|");
             System.out.println("| REMOVE FROM CART --------------------------------------|\n");
 
             System.out.println(String.format("%-12s %-15s %-15s %-8s", "Stock", "Product Name", "Unit Price",
@@ -256,7 +256,7 @@ public class StoreView {
 
 
         } else if (command.equals("cart")) {
-            System.out.println("|--------------------The Course Store--------------------|");
+            System.out.println("|--------------------The Candy Store---------------------|");
             System.out.println("| REVIEW CART -------------------------------------------|\n");
 
             System.out.println(String.format("%-12s %-15s %-15s", "Stock", "Product Name", "Unit Price"));
@@ -275,7 +275,7 @@ public class StoreView {
 
 
         } else if (command.equals("checkout")) {
-            System.out.println("|--------------------The Course Store--------------------|");
+            System.out.println("|--------------------The Candy Store---------------------|");
             System.out.println("| CHECKOUT ----------------------------------------------|\n");
 
             double totalPrice = 0.0;
@@ -305,7 +305,7 @@ public class StoreView {
 
 
         } else if ((id == 0) && (command.equals("addtoinventory"))) {
-            System.out.println("|--------------------The Course Store--------------------|");
+            System.out.println("|--------------------The Candy Store---------------------|");
             System.out.println("| ADD TO INVENTORY --------------------------------------|\n");
 
             String newProductName = null;
@@ -358,7 +358,7 @@ public class StoreView {
 
 
         } else if ((id == 0) && (command.equals("removefrominventory"))) {
-            System.out.println("|--------------------The Course Store--------------------|");
+            System.out.println("|--------------------The Candy Store---------------------|");
             System.out.println("| REMOVE FROM INVENTORY ---------------------------------|\n");
 
             System.out.println(String.format("%-12s %-15s %-15s %-8s", "Stock", "Product Name", "Unit Price",
@@ -685,7 +685,7 @@ public class StoreView {
                 }
                 receiptBuilder.append(String.format("------------------------------------\nYour total is: $%.2f\n",
                         totalPrice));
-                receiptBuilder.append("Thank you for shopping at the course store!");
+                receiptBuilder.append("Thank you for shopping at The Candy Store!");
                 int userChoice = JOptionPane.showConfirmDialog(frame, receiptBuilder.toString(), "Receipt", JOptionPane.OK_CANCEL_OPTION);
 
                 if (userChoice == JOptionPane.OK_OPTION) {
