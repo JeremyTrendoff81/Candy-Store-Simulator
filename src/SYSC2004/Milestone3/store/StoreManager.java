@@ -33,13 +33,13 @@ public class StoreManager {
      */
     public StoreManager() {
         ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product("SYSC2004", 101, 100.00, "kidoncomputer.png"));
-        products.add(new Product("SYSC4906", 102, 55.00, "face.png"));
-        products.add(new Product("SYSC2006", 103, 45.00, "kidoncomputer.png"));
-        products.add(new Product("MUSI1001", 104, 35.00, "face.png"));
-        products.add(new Product("CRCJ1000", 105, 0.01, "kidoncomputer.png"));
-        products.add(new Product("ELEC4705", 106, 25.00,"face.png"));
-        products.add(new Product("SYSC4907", 107, 145.00, "kidoncomputer.png"));
+        products.add(new Product("Mars", 101, 2.00, "marsbar.png"));
+        products.add(new Product("Snickers", 102, 2.00, "snickersbar.png"));
+        products.add(new Product("Kit-Kat", 103, 4.00, "kitkatbar.png"));
+        products.add(new Product("Cadbury MiniEggs", 104, 15.00, "minieggs.png"));
+        products.add(new Product("Oh Henry", 105, 3.00, "ohhenry.png"));
+        products.add(new Product("Mr.BIG", 106, 3.00,"mrbig.png"));
+        products.add(new Product("Reese's", 107, 5.00, "reeses.png"));
 
         ArrayList<Integer> stock = new ArrayList<>();
         stock.add(76);
