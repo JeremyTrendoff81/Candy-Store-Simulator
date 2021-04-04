@@ -68,6 +68,7 @@ public class ImagePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
+        setBackground(Color.WHITE);
+        g.drawImage(image, 50, 40, this.getWidth() - 100, this.getHeight() - 30, this);
     }
 }
