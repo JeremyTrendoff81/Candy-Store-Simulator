@@ -11,7 +11,14 @@ import java.util.ArrayList;
  * @since Feb 23, 2021
  */
 public class Inventory {
+    /**
+     * An ArrayList representing the products in the inventory.
+     */
     private ArrayList<Product> productList;
+
+    /**
+     * An ArrayList representing the quantity of each product in the inventory.
+     */
     private ArrayList<Integer> stockList;
 
     /**
