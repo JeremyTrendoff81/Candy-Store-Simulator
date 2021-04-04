@@ -666,7 +666,7 @@ public class StoreView {
         }
 
         // Create title
-        frame.add(new JLabel(String.format("Welcome to The Course Store! (ID: %d)", this.id)), BorderLayout.PAGE_START);
+        frame.add(new JLabel(String.format("Welcome to The Candy Store! (ID: %d)", this.id)), BorderLayout.PAGE_START);
 
         // Create tabbed panes with titles for inventory and cart
         JTabbedPane tabs = new JTabbedPane();
