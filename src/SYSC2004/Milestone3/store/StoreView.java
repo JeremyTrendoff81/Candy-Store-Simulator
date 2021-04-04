@@ -35,27 +35,27 @@ public class StoreView {
     private final int id;
 
     /**
-     *
+     * The JPanel that will hold the product's ImagePanel in inventoryProducts.
      */
     private JPanel inventory;
 
     /**
-     *
+     * The JPanel that will hold the product's ImagePanel in cartProducts.
      */
     private JPanel cart;
 
     /**
-     *
+     * An ArrayList of ImagePanel's to hold the information of each product in the inventory.
      */
     private ArrayList<ImagePanel> inventoryProducts;
 
     /**
-     *
+     * An ArrayList of ImagePanel's to hold the information of each product in the cart.
      */
     private ArrayList<ImagePanel> cartProducts;
 
     /**
-     *
+     * A JLabel representing the total price of the products in the cart.
      */
     private JLabel total;
 
@@ -421,7 +421,7 @@ public class StoreView {
     /**
      * Run the program using a console user interface.
      */
-    public static void consoleUI() {
+    private static void consoleUI() {
         StoreManager manager = new StoreManager();
         Scanner in = new Scanner(System.in);
 
@@ -509,6 +509,9 @@ public class StoreView {
         System.out.println("\nALL STOREVIEWS DEACTIVATED");
     }
 
+    /**
+     * Update the total price of the products in the cart and display that price on the GUI.
+     */
     private void updateTotalPrice() {
         double totalPrice = 0;
         int productID;
@@ -519,6 +522,15 @@ public class StoreView {
         total.setText(String.format("Your total is %.2f", totalPrice));
     }
 
+    /**
+     * Make an add button to add products to the cart.
+     *
+     * @param productID     int: the id of the product to add.
+     * @param index         int: the index of the product panel in cartProducts.
+     * @param cartLabel     JLabel: the label of the quantity of the product being added.
+     * @param inventoryLabel    JLabel: the label of the quantity of the product in the inventory.
+     * @return  JButton: The add button.
+     */
     private JButton makeAddButton(int productID, int index, JLabel cartLabel, JLabel inventoryLabel) {
         JButton button = new JButton("Add to Cart");
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -544,6 +556,15 @@ public class StoreView {
         return button;
     }
 
+    /**
+     * Make an remove button to remove products to the cart.
+     *
+     * @param productID     int: the id of the product to remove.
+     * @param index         int: the index of the product panel in inventoryProducts.
+     * @param cartLabel     JLabel: the label of the quantity of the product being removed.
+     * @param inventoryLabel    JLabel: the label of the quantity of the product in the inventory.
+     * @return  JButton: The remove button.
+     */
     private JButton makeRemoveButton(int productID, int index, JLabel cartLabel, JLabel inventoryLabel) {
         JButton button = new JButton("Remove from Cart");
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -570,7 +591,7 @@ public class StoreView {
 
 
     /**
-     *
+     * Display the store's interface as a GUI.
      */
     private void displayGUI() {
 
