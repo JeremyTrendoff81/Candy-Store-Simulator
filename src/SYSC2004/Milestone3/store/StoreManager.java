@@ -60,7 +60,7 @@ public class StoreManager {
      * @return int, number of StoreView instances (used as an id for a storeview)
      */
     public int assignNewCartID() {
-        this.carts.add(new ShoppingCart());
+        this.carts.add(new ShoppingCart(numStoreView));
         return numStoreView++;
     }
 
@@ -118,15 +118,15 @@ public class StoreManager {
     /**
      * Get the stock of the product with the id 'id' from either a ShoppingCart or the Inventory
      *
-     * @param id int, the id of the product whose stock is being accessed
+     * @param product Product, the product whose stock is being accessed
      * @param location int, specifies whether to access a cart or the inventory
      * @return int, the stock of the product
      */
-    public int getStock(int id, int location) {
+    public int getStock(Product product, int location) {
         if (location == -1) {
-            return this.inventory.getStock(id);
+            return this.inventory.getProductQuantity(product);
         } else if ((location >= 0) && (location < carts.size())) {
-            return this.carts.get(location).getStock(id);
+            return this.carts.get(location).getProductQuantity(product);
         } else {
             return -1;
         }
@@ -140,9 +140,9 @@ public class StoreManager {
      */
     public int getNumProducts(int location) {
         if (location == -1) {
-            return this.inventory.getNumProducts();
+            return this.inventory.getNumOfProducts();
         } else if ((location >= 0) && (location < carts.size())) {
-            return this.carts.get(location).getNumProducts();
+            return this.carts.get(location).getNumOfProducts();
         } else {
             return -1;
         }
@@ -157,9 +157,9 @@ public class StoreManager {
      */
     public void add(Product product, int quantity, int location) {
         if (location == -1) {
-            this.inventory.addStock(product, quantity);
+            this.inventory.addProductQuantity(product, quantity);
         } else if ((location >= 0) && (location < carts.size())) {
-            this.carts.get(location).addStock(product, quantity);
+            this.carts.get(location).addProductQuantity(product, quantity);
         } else {
             System.out.println("Invalid Cart/Inventory to access");
         }
@@ -168,16 +168,16 @@ public class StoreManager {
     /**
      * Remove a product from either the Inventory or a ShoppingCart
      *
-     * @param id int, the id of the product to be removed
+     * @param product Product, the product whose stock is being accessed
      * @param quantity int, the quantity of the product to be removed
      * @param location int, specifies whether to access a cart or the inventory
      * @return boolean, true for a successful removal, false otherwise
      */
-    public boolean remove(int id, int quantity, int location) {
+    public boolean remove(Product product, int quantity, int location) {
         if (location == -1) {
-            return this.inventory.removeStock(id, quantity);
+            return this.inventory.removeProductQuantity(product, quantity);
         } else if ((location >= 0) && (location < carts.size())) {
-            return this.carts.get(location).removeStock(id, quantity);
+            return this.carts.get(location).removeProductQuantity(product, quantity);
         } else {
             return false;
         }

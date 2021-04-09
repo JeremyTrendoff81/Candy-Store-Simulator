@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @version 4.0
  * @since Feb 23, 2021
  */
-public class Inventory {
+public class Inventory implements ProductStockContainer {
     /**
      * An ArrayList representing the products in the inventory.
      */
@@ -60,7 +60,8 @@ public class Inventory {
      * @param product   A Product object to represent the product to be added.
      * @param quantity  An int value to represent the quantity of product to be added (must be positive).
      */
-    public void addStock(Product product, int quantity) {
+    @Override
+    public void addProductQuantity(Product product, int quantity) {
         int i = haveProduct(product.getID());
 
         if (i != -1) {
@@ -74,12 +75,13 @@ public class Inventory {
     /**
      * Remove a given amount of stock of a product.
      *
-     * @param id    An int value representing the ID of the product.
+     * @param product Product, the product whose stock is being accessed
      * @param quantity  An int value to represent the quantity of product to be removed (must be positive).
      * @return  True if the products were removed properly, otherwise false.
      */
-    public boolean removeStock(int id, int quantity) {
-        int i = haveProduct(id);     // The index of the product and its related quantity
+    @Override
+    public boolean removeProductQuantity(Product product, int quantity) {
+        int i = haveProduct(product.getID());     // The index of the product and its related quantity
 
         if ((i != -1) && (this.stockList.get(i) >= quantity)) {
             if (this.stockList.get(i) == quantity) {
@@ -143,11 +145,12 @@ public class Inventory {
     /**
      * Get the amount of stock for a give product ID.
      *
-     * @param id    An int value representing the product ID.
+     * @param product Product, the product whose stock is being accessed
      * @return  An int value representing the quantity of the product.
      */
-    public int getStock(int id) {
-        int i = haveProduct(id);
+    @Override
+    public int getProductQuantity(Product product) {
+        int i = haveProduct(product.getID());
 
         if (i != -1) {
             return this.stockList.get(i);
@@ -160,7 +163,8 @@ public class Inventory {
      *
      * @return  An int value representing the number of products in the inventory.
      */
-    public int getNumProducts() {
+    @Override
+    public int getNumOfProducts() {
         return this.productList.size();
     }
 

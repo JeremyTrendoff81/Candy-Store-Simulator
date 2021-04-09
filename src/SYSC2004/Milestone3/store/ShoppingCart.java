@@ -10,9 +10,24 @@ package SYSC2004.Milestone3.store;
 public class ShoppingCart extends Inventory {
 
     /**
+     * The ID of the shopping cart.
+     */
+    private final int cartID;
+
+    /**
      * Default constructor for Shopping Cart
      */
-    public ShoppingCart() {
+    public ShoppingCart(int cartID) {
         super();
+        this.cartID = cartID;
+    }
+
+    /**
+     * Get the cart's ID.
+     *
+     * @return int, the cart id.
+     */
+    public int getCartID() {
+        return cartID;
     }
 }
