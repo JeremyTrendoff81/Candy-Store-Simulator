@@ -1,7 +1,5 @@
 package SYSC2004.Milestone3.store;
 
-import java.awt.*;
-
 /**
  * The product class will store information about the items being sold by the store.
  *

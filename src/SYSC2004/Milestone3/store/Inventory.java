@@ -1,6 +1,5 @@
 package SYSC2004.Milestone3.store;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -143,7 +142,7 @@ public class Inventory implements ProductStockContainer {
     }
 
     /**
-     * Get the amount of stock for a give product ID.
+     * Get the amount of stock for a give product.
      *
      * @param product Product, the product whose stock is being accessed
      * @return  An int value representing the quantity of the product.
