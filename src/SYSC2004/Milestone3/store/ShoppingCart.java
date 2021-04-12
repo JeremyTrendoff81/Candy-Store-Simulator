@@ -7,7 +7,7 @@ package SYSC2004.Milestone3.store;
  * @version 1.0
  * @since Feb 23, 2021
  */
-public class ShoppingCart extends Inventory {
+public class ShoppingCart extends Inventory implements ProductStockContainer {
 
     /**
      * The ID of the shopping cart.
